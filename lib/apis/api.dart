@@ -1,0 +1,10 @@
+const String ROOT = "http://egovision24.com";
+const String REGISTRATION = "$ROOT/androidApp/user_verify_registration.php";
+const String LOGIN = "$ROOT/androidApp/login.php";
+const String OTP = "$ROOT/androidApp/verify_customer.php";
+const String TYPE = "$ROOT/androidApp/get_type.php";
+const String CATEGORY = "$ROOT/androidApp/get_category.php";
+const String BRAND = "$ROOT/androidApp/get_brand.php";
+const String COLOR = "$ROOT/androidApp/get_color.php";
+const String SLIDER = "$ROOT/androidApp/get_ads.php";
+const String CATWISEPROD = "$ROOT/androidApp/get_produts.php";
