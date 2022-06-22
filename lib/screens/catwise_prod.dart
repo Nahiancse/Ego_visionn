@@ -1,4 +1,5 @@
 import 'package:ego_visionn/models/catwiseProdModel.dart';
+import 'package:ego_visionn/screens/prod_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -20,7 +21,7 @@ class _CatWiseProdScreenState extends State<CatWiseProdScreen> {
             'Ego Vision',
             style: TextStyle(color: Colors.white),
           ),
-          backgroundColor: Colors.deepPurple,
+          backgroundColor: Color(0xFF7859a5),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -67,17 +68,32 @@ class _CatWiseProdScreenState extends State<CatWiseProdScreen> {
                         height: 5,
                       ),
                       // OutlinedButton(child: Text("Add"), onPressed: () {})
-                      Container(
-                        height: 40,
-                        width: 250,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border:
-                              Border.all(color: Colors.deepPurple, width: 3),
-                        ),
-                        child: Text(
-                          'ADD',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return ProdDetailScreen(
+                              index: index,
+                              image:widget.resposne!.contents![index].image ,
+                              name: widget.resposne!.contents![index].productName,
+                              status:widget.resposne!.contents![index].status ,
+                              price: widget.resposne!.contents![index].productSellingPrice,);
+                          }));
+                        },
+                        child: Container(
+                          height: 40,
+                          width: 250,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Color(0xFF7859a5), width: 3),
+                          ),
+                          child: Text(
+                            'ADD To Cart',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF7859a5)),
+                          ),
                         ),
                       )
                       // ElevatedButton(onPressed: () {}, child: Text("Add"))

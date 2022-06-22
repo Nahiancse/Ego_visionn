@@ -148,7 +148,7 @@ class _HomeState extends State<Home> {
               );
             },
           ),
-          backgroundColor: Colors.deepPurple,
+          backgroundColor: Color(0xFF7859a5),
           title: Text(
             'Ego Vision',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -201,9 +201,9 @@ class _HomeState extends State<Home> {
                                               children: [
                                                 CircleAvatar(
                                                   backgroundImage: AssetImage(
-                                                      'assets/purpIcon.jpg'),
+                                                      'assets/logo.jpeg'),
                                                   backgroundColor:
-                                                      Colors.deepPurple,
+                                                      Color(0xFF7859a5),
                                                   radius: 25,
                                                 ),
                                                 Text(
@@ -273,10 +273,10 @@ class _HomeState extends State<Home> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 CircleAvatar(
-                                                  backgroundImage: AssetImage(
-                                                      'assets/purpIcon.jpg'),
+                                                 backgroundImage: AssetImage(
+                                                      'assets/logo.jpeg'),
                                                   backgroundColor:
-                                                      Colors.deepPurple,
+                                                      Color(0xFF7859a5),
                                                   radius: 25,
                                                 ),
                                                 Text(
@@ -347,9 +347,9 @@ class _HomeState extends State<Home> {
                                               children: [
                                                 CircleAvatar(
                                                   backgroundImage: AssetImage(
-                                                      'assets/purpIcon.jpg'),
+                                                      'assets/logo.jpeg'),
                                                   backgroundColor:
-                                                      Colors.deepPurple,
+                                                      Color(0xFF7859a5),
                                                   radius: 25,
                                                 ),
                                                 Text(
@@ -420,9 +420,9 @@ class _HomeState extends State<Home> {
                                               children: [
                                                 CircleAvatar(
                                                   backgroundImage: AssetImage(
-                                                      'assets/purpIcon.jpg'),
+                                                      'assets/logo.jpeg'),
                                                   backgroundColor:
-                                                      Colors.deepPurple,
+                                                      Color(0xFF7859a5),
                                                   radius: 25,
                                                 ),
                                                 Text(

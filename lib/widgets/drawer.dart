@@ -17,7 +17,7 @@ class OpenDrawer extends StatelessWidget {
             padding: EdgeInsets.all(8),
             // margin: EdgeInsets.only(top: 50),
             // height: double.infinity,
-            color: Colors.deepPurple,
+            color: Color(0xFF7859a5),
             child: Column(
               children: [
                 CircleAvatar(
@@ -41,7 +41,7 @@ class OpenDrawer extends StatelessWidget {
             title: Text(
               "Pending Order",
               style: TextStyle(
-                  color: Colors.deepPurple, fontWeight: FontWeight.bold),
+                  color: Color(0xFF7859a5), fontWeight: FontWeight.bold),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -51,7 +51,7 @@ class OpenDrawer extends StatelessWidget {
             title: Text(
               "Ongoing Order",
               style: TextStyle(
-                  color: Colors.deepPurple, fontWeight: FontWeight.bold),
+                  color: Color(0xFF7859a5), fontWeight: FontWeight.bold),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -61,7 +61,7 @@ class OpenDrawer extends StatelessWidget {
             title: Text(
               "Recieve Order",
               style: TextStyle(
-                  color: Colors.deepPurple, fontWeight: FontWeight.bold),
+                  color: Color(0xFF7859a5), fontWeight: FontWeight.bold),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -71,7 +71,7 @@ class OpenDrawer extends StatelessWidget {
             title: Text(
               "All Order",
               style: TextStyle(
-                  color: Colors.deepPurple, fontWeight: FontWeight.bold),
+                  color: Color(0xFF7859a5), fontWeight: FontWeight.bold),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -81,7 +81,7 @@ class OpenDrawer extends StatelessWidget {
             title: Text(
               "Login",
               style: TextStyle(
-                  color: Colors.deepPurple, fontWeight: FontWeight.bold),
+                  color: Color(0xFF7859a5), fontWeight: FontWeight.bold),
             ),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
