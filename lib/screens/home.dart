@@ -132,28 +132,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        drawer: OpenDrawer(),
-        appBar: AppBar(
-          leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: const Icon(
-                  Icons.menu,
-                  size: 30,
-                ),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-              );
-            },
-          ),
-          backgroundColor: Color(0xFF7859a5),
-          title: Text(
-            'Ego Vision',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
+        
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -273,7 +252,7 @@ class _HomeState extends State<Home> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 CircleAvatar(
-                                                 backgroundImage: AssetImage(
+                                                  backgroundImage: AssetImage(
                                                       'assets/logo.jpeg'),
                                                   backgroundColor:
                                                       Color(0xFF7859a5),
@@ -709,7 +688,7 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNav(),
+        // bottomNavigationBar: BottomNav(),
       ),
     );
   }

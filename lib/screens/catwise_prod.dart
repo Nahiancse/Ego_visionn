@@ -73,7 +73,7 @@ class _CatWiseProdScreenState extends State<CatWiseProdScreen> {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return ProdDetailScreen(
-                              index: index,
+                              prodId: widget.resposne!.contents![index].productSlNo,
                               image:widget.resposne!.contents![index].image ,
                               name: widget.resposne!.contents![index].productName,
                               status:widget.resposne!.contents![index].status ,

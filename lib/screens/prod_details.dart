@@ -1,20 +1,25 @@
 import 'package:badges/badges.dart';
- 
+import 'package:ego_visionn/cart/cart_screen.dart';
+import 'package:ego_visionn/cart/ccartS.dart';
+import 'package:ego_visionn/cart/sql_helper.dart';
+
 import 'package:ego_visionn/constants.dart';
+import 'package:ego_visionn/screens/order_summery.dart';
 import 'package:ego_visionn/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
+// import 'sql_helper.dart';
 
 class ProdDetailScreen extends StatefulWidget {
   String? image;
   String? name;
   String? price;
   String? status;
-  int? index;
+  String? prodId;
   ProdDetailScreen(
-      {this.name, this.image, this.price, this.status, this.index});
+      {this.name, this.image, this.price, this.status, this.prodId});
 
   @override
   State<ProdDetailScreen> createState() => _ProdDetailScreenState();
@@ -29,12 +34,83 @@ class _ProdDetailScreenState extends State<ProdDetailScreen> {
     // 'https://www.thesprucepets.com/thmb/63v75VJoGecxMB4re_KfA4GYZwc=/2400x2400/smart/filters:no_upscale()/popular-small-bird-species-390926-hero-d3d0af7bb6ed4947b0c3c5afb4784456.jpg'
   ];
 
-  /////////////////////////////////////
-   
+  /////////////////////////////////////cart
+  // All cart
+  List<Map<String, dynamic>> _carts = [];
+  bool _isLoading = true;
+  // This function is used to fetch all data from the database
+  void _refreshJournals() async {
+    final data = await SQLHelper.getItems();
+    setState(() {
+      _carts = data;
+      _isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _refreshJournals(); // Loading the diary when the app starts
+  }
+
+  void _createCart(int? id) async {
+    // if (id != null) {
+    //   // id == null -> create new item
+    //   // id != null -> update an existing item
+    //   final existingJournal =
+    //       _carts.firstWhere((element) => element['id'] == id);
+    //   if (existingJournal['name'] == widget.name) {
+    //     print('already exits');
+    //   }
+    // }
+
+    if (id == null) {
+      await _addItem();
+      print('success');
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return CartScreenn();
+        // return CartScreen();
+      }));
+      // final existingJournal =
+      //     _carts.firstWhere((element) => element['id'] == id);
+      // if (existingJournal['id'] == id) {
+      //   print('already exits');
+      // } else if (existingJournal['id'] != id) {
+
+      // }
+    } else {
+      print('already exist');
+    }
+  }
+
+/////////////existing item
+  void _existing(int? id) async {
+    if (id != null) {
+      // id == null -> create new item
+      // id != null -> update an existing item
+      final existingJournal =
+          _carts.firstWhere((element) => element['id'] == id);
+      if (existingJournal['id'] == id) {
+        print('already exits');
+      }
+    }
+  }
+
+  // Insert a new journal to the database
+  Future<void> _addItem() async {
+    await SQLHelper.createItem(
+      widget.name!,
+      widget.price!,
+      widget.image!,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('added to cart'),
+    ));
+    _refreshJournals();
+  }
 
   @override
   Widget build(BuildContext context) {
-     
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -48,7 +124,6 @@ class _ProdDetailScreenState extends State<ProdDetailScreen> {
               color: Color(0xFF7859a5),
               size: 30,
             )),
-         
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -128,7 +203,23 @@ class _ProdDetailScreenState extends State<ProdDetailScreen> {
             ),
 
             /////////////for cart
-            
+            ElevatedButton(
+                onPressed: () {
+                  _createCart(null);
+                },
+                child: Text('Add to cart')),
+            /////////////for checkout
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return OrderSummery(
+                      name: widget.name,
+                      image: widget.image,
+                      price: widget.price,
+                    );
+                  }));
+                },
+                child: Text('Buy Now')),
           ],
         ),
       ),

@@ -284,7 +284,31 @@ class _LoginPageState extends State<LoginPage> {
       Map<String, dynamic> user = resposne['user'];
       print(resposne);
       print(" User name ${user['name']}");
-      // savePref(1,user['name'],user['email'],user['id']);
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+
+      preferences.setString("userId", user['code']);
+      preferences.setString("name", user['name']);
+      preferences.setString("phone", user['phone']);
+      preferences.setString("address", user['address']);
+
+      preferences.setString("organization", user['organization_name']);
+      // preferences.setString("image", user['image']);
+      // preferences.setString("status", user['status']);
+      // preferences.setString("branchId", user['branch_id']);
+      // preferences.setString("Id", user['id']);
+      // preferences.setString("password", user['password']);
+      // savePref(
+      //   user['code'],
+      //   user['name'],
+      //   user['phone'],
+      //   user['address'],
+      //   user['organization_name'],
+      //   user['image'],
+      //   user['status'],
+      //   user['branch_id'],
+      //   user['id'],
+      //   user['password'],
+      // );
       Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
 
       print(" ${resposne['success']}");
@@ -296,14 +320,31 @@ class _LoginPageState extends State<LoginPage> {
           .showSnackBar(SnackBar(content: Text("Please try again!")));
     }
   }
-  //   savePref(int value, String name, String email, int id) async {
+
+  // savePref(
+  //   String userId,
+  //   String name,
+  //   String phone,
+  //   String address,
+  //   String organization,
+  //   String image,
+  //   String status,
+  //   String branchId,
+  //   String id,
+  //   String password,
+  // ) async {
   //   SharedPreferences preferences = await SharedPreferences.getInstance();
 
-  //     preferences.setInt("value", value);
-  //     preferences.setString("name", name);
-  //     preferences.setString("email", email);
-  //     preferences.setString("id", id.toString());
-  //     preferences.commit();
+  //   preferences.setString("userId", userId);
+  //   preferences.setString("name", name);
+  //   preferences.setString("phone", phone);
+  //   preferences.setString("address", address);
 
+  //   preferences.setString("organization", organization);
+  //   preferences.setString("image", image);
+  //   preferences.setString("status", status);
+  //   preferences.setString("branchId", branchId);
+  //   preferences.setString("Id", id);
+  //   preferences.setString("password", password);
   // }
 }
