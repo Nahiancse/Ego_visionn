@@ -239,21 +239,24 @@ class _OrderSummeryState extends State<OrderSummery> {
     };
     print(data.toString());
     final response = await http.post(Uri.parse(ORDER),
-        // headers: {
-        //   'Content-Type': 'application/json; charset=UTF-8',
-        // },
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
         body: jsonEncode(data),
         encoding: Encoding.getByName("utf-8"));
     // setState(() {
     //   isLoading=false;
     // });
     if (response.statusCode == 200) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
-      print('success');
-      Map<String, dynamic> resposne = jsonDecode(response.body);
+      print(response.body);
+      print(response.statusCode);
+      
+      // Map<String, dynamic> resposne = jsonDecode(response.body);
 
-      // Map<String, dynamic> user = resposne['user'];
-      print(resposne);
+      // // Map<String, dynamic> user = resposne['user'];
+      // print(resposne);
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+      // print('success');
       // print(" User name ${user['name']}");
       // SharedPreferences preferences = await SharedPreferences.getInstance();
 

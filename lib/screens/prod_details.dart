@@ -205,27 +205,51 @@ class _ProdDetailScreenState extends State<ProdDetailScreen> {
               ),
 
               /////////////for cart
-              ElevatedButton(
-                  onPressed: () {
-                    _createCart(null);
-                  },
-                  child: Text('Add to cart')),
+              SizedBox(height: 30,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                            _createCart(null);
+                          },
+                    child: Container(
+                       alignment: Alignment.center,
+                      padding: EdgeInsets.all(10),
+                      color:Colors.purple,
+                      height: 40,
+                      width: 150,
+                      child: Text('Add to cart',style: TextStyle(color: Colors.white),),
+                    ),
+                  ),
+                  SizedBox(width: 10,),
+                      GestureDetector(
+                        onTap: () {
+                                          Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return OrderSummery(
+                            name: widget.name,
+                            image: widget.image,
+                            price: widget.price,
+                            prodId: widget.prodId,
+                            purchasePrice: widget.purchasePrice,
+                            status: widget.status,
+                          );
+                                          }));
+                                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(8),
+                          color:Colors.green,
+                           height: 40,
+                          width: 150,
+                          child: Text('Buy Now',style: TextStyle(color: Colors.white),),
+                        ),
+                      ),
+                ],
+              ),
               /////////////for checkout
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return OrderSummery(
-                        name: widget.name,
-                        image: widget.image,
-                        price: widget.price,
-                        prodId: widget.prodId,
-                        purchasePrice: widget.purchasePrice,
-                        status: widget.status,
-                      );
-                    }));
-                  },
-                  child: Text('Buy Now')),
+              
             ],
           ),
         ),

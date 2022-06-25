@@ -18,8 +18,9 @@ class _BottomNavState extends State<BottomNav> {
     Home(),
     ProfileScreen(),
     Home(),
-    ProfileScreen(),
+    
     Home(),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {

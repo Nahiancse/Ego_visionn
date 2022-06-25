@@ -146,26 +146,36 @@ class _HomeState extends State<Home> {
                     fetchSearch();
                   },
                   child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+    border: Border.all(
+      color: Colors.purple,
+    ),
+    borderRadius: BorderRadius.circular(10.0),),
+                    height:40,
                       // alignment: Alignment.center,
                       padding: EdgeInsets.only(left: 120),
-                      color: Color(0xFF7859a5),
+                      
                       width: double.infinity,
                       child: Row(
                         children: [
                           Icon(
                             Icons.search_rounded,
-                            color: Colors.white,
+                            // color: Colors.white,
                           ),
                           SizedBox(
                             width: 20,
                           ),
                           Text(
                             'Search',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.black),
                           )
                         ],
                       )),
                 ),
+                SizedBox(
+                            height: 20,
+                          ),
                 Text(
                   'Types',
                   style: TextStyle(
@@ -174,68 +184,66 @@ class _HomeState extends State<Home> {
                       fontWeight: FontWeight.bold),
                 ),
                 Container(
-                  width: double.infinity,
-                  height: 110,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FutureBuilder<Types>(
-                          future: futureType,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return Container(
-                                width: double.infinity,
-                                height: 100,
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: snapshot.data!.contents!.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index) {
-                                      return GestureDetector(
-                                        onTap: () async {
-                                          type_filter(snapshot
-                                              .data!.contents![index].id);
-                                        },
-                                        child: Container(
-                                          width: 135,
-                                          height: 100,
-                                          child: Card(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                CircleAvatar(
-                                                  backgroundImage: AssetImage(
-                                                      'assets/logo.jpeg'),
-                                                  backgroundColor:
-                                                      Color(0xFF7859a5),
-                                                  radius: 25,
-                                                ),
-                                                Text(
-                                                  snapshot.data!
-                                                      .contents![index].name!,
-                                                  style: TextStyle(
-                                                      // fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ],
+                  // width: double.infinity,
+                  // height: 110,
+                  child: FutureBuilder<Types>(
+                      future: futureType,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Container(
+                            width: double.infinity,
+                            height: 100,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: snapshot.data!.contents!.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () async {
+                                      type_filter(snapshot
+                                          .data!.contents![index].id);
+                                    },
+                                    child: Container(
+                                      // padding:EdgeInsets.all(8),
+                                      width: 100,
+                                      height: 100,
+                                      child: Card(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            CircleAvatar(
+                                              backgroundImage: AssetImage(
+                                                  'assets/logo.jpeg'),
+                                              backgroundColor:
+                                                  Color(0xFF7859a5),
+                                              // radius: 25,
                                             ),
-                                          ),
+                                            Flexible(
+                                              child: Text(
+                                                snapshot.data!
+                                                    .contents![index].name!,
+                                                style: TextStyle(
+                                                    // fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      );
-                                    }),
-                              );
-                              // Text(snapshot.data!.);
-                            } else if (snapshot.hasError) {
-                              return Text('${snapshot.error}');
-                            }
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          );
+                          // Text(snapshot.data!.);
+                        } else if (snapshot.hasError) {
+                          return Text('${snapshot.error}');
+                        }
 
-                            // By default, show a loading spinner.
-                            return const CircularProgressIndicator();
-                          }),
-                    ],
-                  ),
+                        // By default, show a loading spinner.
+                        return Center(child: const CircularProgressIndicator());
+                      }),
                 ),
                 Text(
                   'Category',
@@ -245,72 +253,69 @@ class _HomeState extends State<Home> {
                       fontWeight: FontWeight.bold),
                 ),
                 Container(
-                  height: 110,
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FutureBuilder<CategoryModel>(
-                          future: futureCategory,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return Container(
-                                width: double.infinity,
-                                height: 110,
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: snapshot.data!.contents!.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index) {
-                                      return GestureDetector(
-                                        onTap: () async {
-                                          type_category(snapshot
-                                              .data!
-                                              .contents![index]
-                                              .productCategorySlNo);
-                                        },
-                                        child: Container(
-                                          width: 135,
-                                          height: 100,
-                                          child: Card(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                CircleAvatar(
-                                                  backgroundImage: AssetImage(
-                                                      'assets/logo.jpeg'),
-                                                  backgroundColor:
-                                                      Color(0xFF7859a5),
-                                                  radius: 25,
-                                                ),
-                                                Text(
-                                                  snapshot
-                                                      .data!
-                                                      .contents![index]
-                                                      .productCategoryName!,
-                                                  style: TextStyle(
-                                                      // fontSize: 1,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ],
+                  // height: 110,
+                  // width: double.infinity,
+                  child: FutureBuilder<CategoryModel>(
+                      future: futureCategory,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Container(
+                            width: double.infinity,
+                            height: 110,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: snapshot.data!.contents!.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () async {
+                                      type_category(snapshot
+                                          .data!
+                                          .contents![index]
+                                          .productCategorySlNo);
+                                    },
+                                    child: Container(
+                                      width: 100,
+                                      height: 100,
+                                      child: Card(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            CircleAvatar(
+                                              backgroundImage: AssetImage(
+                                                  'assets/logo.jpeg'),
+                                              backgroundColor:
+                                                  Color(0xFF7859a5),
+                                              // radius: 25,
                                             ),
-                                          ),
+                                            Flexible(
+                                              child: Text(
+                                                snapshot
+                                                    .data!
+                                                    .contents![index]
+                                                    .productCategoryName!,
+                                                style: TextStyle(
+                                                    // fontSize: 1,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      );
-                                    }),
-                              );
-                              // Text(snapshot.data!.);
-                            } else if (snapshot.hasError) {
-                              return Text('${snapshot.error}');
-                            }
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          );
+                          // Text(snapshot.data!.);
+                        } else if (snapshot.hasError) {
+                          return Text('${snapshot.error}');
+                        }
 
-                            // By default, show a loading spinner.
-                            return const CircularProgressIndicator();
-                          }),
-                    ],
-                  ),
+                        // By default, show a loading spinner.
+                        return Text('');
+                      }),
                 ),
                 Text(
                   'Brand',
@@ -320,70 +325,67 @@ class _HomeState extends State<Home> {
                       fontWeight: FontWeight.bold),
                 ),
                 Container(
-                  width: double.infinity,
-                  height: 110,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FutureBuilder<BrandModel>(
-                          future: futureBrand,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return Container(
-                                width: double.infinity,
-                                height: 100,
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: snapshot.data!.contents!.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index) {
-                                      return GestureDetector(
-                                        onTap: () async {
-                                          brand_category(snapshot.data!
-                                              .contents![index].brandSiNo);
-                                        },
-                                        child: Container(
-                                          width: 135,
-                                          height: 100,
-                                          child: Card(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                CircleAvatar(
-                                                  backgroundImage: AssetImage(
-                                                      'assets/logo.jpeg'),
-                                                  backgroundColor:
-                                                      Color(0xFF7859a5),
-                                                  radius: 25,
-                                                ),
-                                                Text(
-                                                  snapshot
-                                                      .data!
-                                                      .contents![index]
-                                                      .brandName!,
-                                                  style: TextStyle(
-                                                      // fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ],
+                  // width: double.infinity,
+                  // height: 110,
+                  child: FutureBuilder<BrandModel>(
+                      future: futureBrand,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Container(
+                            width: double.infinity,
+                            height: 100,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: snapshot.data!.contents!.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () async {
+                                      brand_category(snapshot.data!
+                                          .contents![index].brandSiNo);
+                                    },
+                                    child: Container(
+                                      width: 100,
+                                      height: 100,
+                                      child: Card(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            CircleAvatar(
+                                              backgroundImage: AssetImage(
+                                                  'assets/logo.jpeg'),
+                                              backgroundColor:
+                                                  Color(0xFF7859a5),
+                                              // radius: 25,
                                             ),
-                                          ),
+                                            Flexible(
+                                              child: Text(
+                                                snapshot
+                                                    .data!
+                                                    .contents![index]
+                                                    .brandName!,
+                                                style: TextStyle(
+                                                    // fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      );
-                                    }),
-                              );
-                              // Text(snapshot.data!.);
-                            } else if (snapshot.hasError) {
-                              return Text('${snapshot.error}');
-                            }
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          );
+                          // Text(snapshot.data!.);
+                        } else if (snapshot.hasError) {
+                          return Text('${snapshot.error}');
+                        }
 
-                            // By default, show a loading spinner.
-                            return const CircularProgressIndicator();
-                          }),
-                    ],
-                  ),
+                        // By default, show a loading spinner.
+                        return Text('');
+                      }),
                 ),
                 Text(
                   'Color',
@@ -393,70 +395,67 @@ class _HomeState extends State<Home> {
                       fontWeight: FontWeight.bold),
                 ),
                 Container(
-                  width: double.infinity,
-                  height: 110,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FutureBuilder<ColorModel>(
-                          future: futureColor,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return Container(
-                                width: double.infinity,
-                                height: 100,
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: snapshot.data!.contents!.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index) {
-                                      return GestureDetector(
-                                        onTap: () async {
-                                          color_category(snapshot.data!
-                                              .contents![index].colorSiNo);
-                                        },
-                                        child: Container(
-                                          width: 135,
-                                          height: 100,
-                                          child: Card(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                CircleAvatar(
-                                                  backgroundImage: AssetImage(
-                                                      'assets/logo.jpeg'),
-                                                  backgroundColor:
-                                                      Color(0xFF7859a5),
-                                                  radius: 25,
-                                                ),
-                                                Text(
-                                                  snapshot
-                                                      .data!
-                                                      .contents![index]
-                                                      .colorName!,
-                                                  style: TextStyle(
-                                                      // fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ],
+                  // width: double.infinity,
+                  // height: 110,
+                  child: FutureBuilder<ColorModel>(
+                      future: futureColor,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Container(
+                            width: double.infinity,
+                            height: 100,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: snapshot.data!.contents!.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () async {
+                                      color_category(snapshot.data!
+                                          .contents![index].colorSiNo);
+                                    },
+                                    child: Container(
+                                      width: 100,
+                                      height: 100,
+                                      child: Card(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            CircleAvatar(
+                                              backgroundImage: AssetImage(
+                                                  'assets/logo.jpeg'),
+                                              backgroundColor:
+                                                  Color(0xFF7859a5),
+                                              // radius: 25,
                                             ),
-                                          ),
+                                            Flexible(
+                                              child: Text(
+                                                snapshot
+                                                    .data!
+                                                    .contents![index]
+                                                    .colorName!,
+                                                style: TextStyle(
+                                                    // fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      );
-                                    }),
-                              );
-                              // Text(snapshot.data!.);
-                            } else if (snapshot.hasError) {
-                              return Text('${snapshot.error}');
-                            }
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          );
+                          // Text(snapshot.data!.);
+                        } else if (snapshot.hasError) {
+                          return Text('${snapshot.error}');
+                        }
 
-                            // By default, show a loading spinner.
-                            return const CircularProgressIndicator();
-                          }),
-                    ],
-                  ),
+                        // By default, show a loading spinner.
+                       return Text('');
+                      }),
                 ),
                 Stack(
                   children: [

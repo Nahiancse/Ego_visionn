@@ -65,80 +65,92 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Search')),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              TextField(
-                onChanged: (value) => _runFilter(value),
-                decoration: const InputDecoration(
-                    labelText: 'Search', suffixIcon: Icon(Icons.search)),
+        appBar: AppBar(backgroundColor: Color(0xFF7859a5),title: Text('Search',style: TextStyle(color:Colors.white),)),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                        color: Colors.white,
+              border: Border.all(
+                color: Colors.purple,
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              _foundUsers.isNotEmpty
-                  ? Container(
-                      height: 500,
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: _foundUsers.length,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return ProdDetailScreen(
-                                    name: _foundUsers[index].productName!,
-                                    image: _foundUsers[index].image!,
-                                    price:
-                                        _foundUsers[index].productSellingPrice,
-                                    status: 'a',
-                                    prodId: _foundUsers[index].productSlNo,
-                                    purchasePrice:
-                                        _foundUsers[index].productPurchaseRate,
-                                  );
-                                }));
-                              },
-                              child: ListTile(
-                                leading: _foundUsers[index].image! != ''
-                                    ? Container(
-                                        height: 100,
-                                        width: 100,
-                                        child: Image.network(
-                                            'http://egovision24.com/uploads/product/${_foundUsers[index].image}'),
-                                      )
-                                    : Image.asset(
-                                        'assets/noprod.jpg',
-                                        height: 100,
-                                        width: 100,
-                                      ),
-                                //  _foundUsers[index].image != ''
-                                // ? Image(
-                                //     height: 100,
-                                //     width: 100,
-                                //     image: NetworkImage(
-                                //         'http://egovision24.com/uploads/product/${_foundUsers[index].image}'),
-                                //   )
-                                // : Image.asset(
-                                //     'assets/noprod.jpg',
-                                //     height: 100,
-                                //     width: 100,
-                                //   ),
-                                title: Text(_foundUsers[index].productName!),
-                                subtitle: Text(
-                                  '${_foundUsers[index].productSellingPrice}Tk',
-                                  style: TextStyle(color: Colors.black),
+              borderRadius: BorderRadius.circular(10.0),),
+                  child: TextField(
+                    onChanged: (value) => _runFilter(value),
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.all(10),
+                        labelText: 'Search', suffixIcon: Icon(Icons.search)),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                _foundUsers.isNotEmpty
+                    ? Container(
+                        height: 1000,
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: _foundUsers.length,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return ProdDetailScreen(
+                                      name: _foundUsers[index].productName!,
+                                      image: _foundUsers[index].image!,
+                                      price:
+                                          _foundUsers[index].productSellingPrice,
+                                      status: 'a',
+                                      prodId: _foundUsers[index].productSlNo,
+                                      purchasePrice:
+                                          _foundUsers[index].productPurchaseRate,
+                                    );
+                                  }));
+                                },
+                                child: ListTile(
+                                  leading: _foundUsers[index].image! != ''
+                                      ? Container(
+                                          height: 100,
+                                          width: 100,
+                                          child: Image.network(
+                                              'http://egovision24.com/uploads/product/${_foundUsers[index].image}'),
+                                        )
+                                      : Image.asset(
+                                          'assets/noprod.jpg',
+                                          height: 100,
+                                          width: 100,
+                                        ),
+                                  //  _foundUsers[index].image != ''
+                                  // ? Image(
+                                  //     height: 100,
+                                  //     width: 100,
+                                  //     image: NetworkImage(
+                                  //         'http://egovision24.com/uploads/product/${_foundUsers[index].image}'),
+                                  //   )
+                                  // : Image.asset(
+                                  //     'assets/noprod.jpg',
+                                  //     height: 100,
+                                  //     width: 100,
+                                  //   ),
+                                  title: Text(_foundUsers[index].productName!),
+                                  subtitle: Text(
+                                    '${_foundUsers[index].productSellingPrice}Tk',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
                                 ),
-                              ),
-                            );
-                          }),
-                    )
-                  : const Text(
-                      'No results found',
-                      style: TextStyle(fontSize: 24),
-                    ),
-            ],
+                              );
+                            }),
+                      )
+                    : const Text(
+                        'No results found',
+                        style: TextStyle(fontSize: 24),
+                      ),
+              ],
+            ),
           ),
         )
 

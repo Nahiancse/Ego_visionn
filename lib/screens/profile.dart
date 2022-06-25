@@ -43,92 +43,97 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          CircleAvatar(
-            radius: 30,
-          ),
-          Card(
-            child: Container(
-              padding: EdgeInsets.only(top: 10, bottom: 10),
-              margin: EdgeInsets.only(left: 30, right: 30),
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 30,
-                    child: Text('Info'),
-                    color: Color(0xFF7859a5),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('User Name'),
-                      SizedBox(width: 100),
-                      Text(_savedName!),
-                    ],
-                  ),
-                  Divider(
-                    thickness: 2,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Phone'),
-                      SizedBox(width: 100),
-                      Text(_savedPhone!),
-                    ],
-                  ),
-                  Divider(
-                    thickness: 2,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('E-mail'),
-                      SizedBox(width: 100),
-                      Text(''),
-                    ],
-                  ),
-                  Divider(
-                    thickness: 2,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Address'),
-                      SizedBox(width: 100),
-                      Text(_savedAddress!),
-                    ],
-                  ),
-                  Divider(
-                    thickness: 2,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('UserId'),
-                      SizedBox(width: 100),
-                      Text(_savedUserId!),
-                    ],
-                  ),
-                  Divider(
-                    thickness: 2,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Organization'),
-                      SizedBox(width: 100),
-                      Text(_savedOrganaization),
-                    ],
-                  ),
-                ],
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            CircleAvatar(
+              radius: 30,
+            ),
+            Card(
+              child: Container(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                margin: EdgeInsets.only(left: 30, right: 30,top:30),
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(8),
+                      width: double.infinity,
+                      height: 40,
+                      child: Text('Info',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                      color: Color(0xFF7859a5),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('User Name'),
+                        SizedBox(width: 100),
+                        Text(_savedName!),
+                      ],
+                    ),
+                    Divider(
+                      thickness: 2,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Phone'),
+                        SizedBox(width: 100),
+                        Text(_savedPhone!),
+                      ],
+                    ),
+                    Divider(
+                      thickness: 2,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('E-mail'),
+                        SizedBox(width: 100),
+                        Text(''),
+                      ],
+                    ),
+                    Divider(
+                      thickness: 2,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Address'),
+                        SizedBox(width: 100),
+                        Text(_savedAddress!),
+                      ],
+                    ),
+                    Divider(
+                      thickness: 2,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('UserId'),
+                        SizedBox(width: 100),
+                        Text(_savedUserId!),
+                      ],
+                    ),
+                    Divider(
+                      thickness: 2,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Organization'),
+                        SizedBox(width: 100),
+                        Text(_savedOrganaization),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
