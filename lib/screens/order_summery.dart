@@ -1,18 +1,59 @@
+import 'dart:convert';
+
+import 'package:ego_visionn/apis/api.dart';
+import 'package:ego_visionn/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class OrderSummery extends StatefulWidget {
   String? image;
   String? name;
   String? price;
-  OrderSummery({this.image, this.name, this.price});
+  String? purchasePrice;
+  String? status;
+  String? prodId;
+  OrderSummery(
+      {this.image,
+      this.name,
+      this.price,
+      this.purchasePrice,
+      this.status,
+      this.prodId});
 
   @override
   State<OrderSummery> createState() => _OrderSummeryState();
 }
 
 class _OrderSummeryState extends State<OrderSummery> {
+  final TextEditingController noteController = TextEditingController();
+  var _savedUserId;
+  var _savedBranchId;
+  var _savedStatus;
+  // Retrieve the saved name if it exists
+  @override
+  void initState() {
+    super.initState();
+    _retrieveName();
+  }
+
+  Future<void> _retrieveName() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    // Check where the name is saved before or not
+    // if (!prefs.containsKey('name')) {
+    //   return;
+    // }
+
+    setState(() {
+      _savedUserId = prefs.getString('userId');
+      _savedBranchId = prefs.getString('branchId');
+      _savedStatus = prefs.getString('status');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,12 +167,28 @@ class _OrderSummeryState extends State<OrderSummery> {
                   padding: EdgeInsets.all(8),
                   width: double.infinity,
                   child: TextField(
+                      controller: noteController,
                       decoration: InputDecoration(
                           border: InputBorder.none, hintText: 'Note')),
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  login(
+                    widget.prodId,
+                    widget.price,
+                    widget.purchasePrice,
+                    1,
+                    widget.price,
+                    widget.status,
+                    _savedUserId,
+                    2020,
+                    _savedStatus,
+                    noteController.text,
+                    widget.price,
+                    _savedBranchId,
+                  );
+                },
                 child: Card(
                   child: Container(
                     color: Color(0xFF7859a5),
@@ -154,5 +211,83 @@ class _OrderSummeryState extends State<OrderSummery> {
         ),
       ),
     );
+  }
+
+  login(prodId, saleRate, purchaseRate, quantity, total, prodStatus, custId,
+      orderDate, custStatus, note, subtotal, branchId) async {
+    Map data = {
+      'cart': [
+        // {prodId, saleRate, purchaseRate, quantity, total, prodStatus}
+        {
+          'product_id': prodId,
+          'sale_rate': saleRate,
+          'purchase_rate': purchaseRate,
+          'quantity': quantity,
+          'total': total,
+          'status': prodStatus
+        }
+      ],
+      // 'sales': {custId, orderDate, custStatus, note, subtotal, branchId},
+      'sales': {
+        'customer_id': custId,
+        'order_date': orderDate,
+        'status': custStatus,
+        'note': note,
+        'subtotal': subtotal,
+        'branch_id': branchId
+      }
+    };
+    print(data.toString());
+    final response = await http.post(Uri.parse(ORDER),
+        // headers: {
+        //   'Content-Type': 'application/json; charset=UTF-8',
+        // },
+        body: jsonEncode(data),
+        encoding: Encoding.getByName("utf-8"));
+    // setState(() {
+    //   isLoading=false;
+    // });
+    if (response.statusCode == 200) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+      print('success');
+      Map<String, dynamic> resposne = jsonDecode(response.body);
+
+      // Map<String, dynamic> user = resposne['user'];
+      print(resposne);
+      // print(" User name ${user['name']}");
+      // SharedPreferences preferences = await SharedPreferences.getInstance();
+
+      // preferences.setString("userId", user['code']);
+      // preferences.setString("name", user['name']);
+      // preferences.setString("phone", user['phone']);
+      // preferences.setString("address", user['address']);
+      // if(user['organization_name'] != null){
+      //     preferences.setString("organization", user['organization_name']);
+      // }else{
+      //   preferences.setString("organization", '');
+      // }
+
+      // preferences.setString("image", user['image']);
+      // preferences.setString("status", user['status']);
+      // preferences.setString("branchId", user['branch_id']);
+      // preferences.setString("Id", user['id']);
+      // preferences.setString("password", user['password']);
+      // savePref(
+      //   user['code'],
+      //   user['name'],
+      //   user['phone'],
+      //   user['address'],
+      //   user['organization_name'],
+      //   user['image'],
+      //   user['status'],
+      //   user['branch_id'],
+      //   user['id'],
+      //   user['password'],
+      // );
+
+      // print(" ${resposne['success']}");
+
+    }
+    print('something');
   }
 }

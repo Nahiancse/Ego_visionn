@@ -1,6 +1,7 @@
 import 'package:ego_visionn/apis/api.dart';
 
 import 'package:ego_visionn/screens/home.dart';
+import 'package:ego_visionn/widgets/bottomNav.dart';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -290,11 +291,20 @@ class _LoginPageState extends State<LoginPage> {
       preferences.setString("name", user['name']);
       preferences.setString("phone", user['phone']);
       preferences.setString("address", user['address']);
+      if (user['organization_name'] != null) {
+        preferences.setString("organization", user['organization_name']);
+      } else {
+        preferences.setString("organization", '');
+      }
+      if (user['image'] != null) {
+        preferences.setString("image", user['image']);
+      } else {
+        preferences.setString("image", '');
+      }
 
-      preferences.setString("organization", user['organization_name']);
       // preferences.setString("image", user['image']);
-      // preferences.setString("status", user['status']);
-      // preferences.setString("branchId", user['branch_id']);
+      preferences.setString("status", user['status']);
+      preferences.setString("branchId", user['branch_id']);
       // preferences.setString("Id", user['id']);
       // preferences.setString("password", user['password']);
       // savePref(
@@ -309,7 +319,8 @@ class _LoginPageState extends State<LoginPage> {
       //   user['id'],
       //   user['password'],
       // );
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => BottomNav()));
 
       print(" ${resposne['success']}");
 

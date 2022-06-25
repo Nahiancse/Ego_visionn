@@ -77,7 +77,10 @@ class _CatWiseProdScreenState extends State<CatWiseProdScreen> {
                               image:widget.resposne!.contents![index].image ,
                               name: widget.resposne!.contents![index].productName,
                               status:widget.resposne!.contents![index].status ,
-                              price: widget.resposne!.contents![index].productSellingPrice,);
+                              price: widget.resposne!.contents![index].productSellingPrice,
+                              purchasePrice:widget.resposne!.contents![index].productPurchaseRate ,
+                              );
+                              
                           }));
                         },
                         child: Container(

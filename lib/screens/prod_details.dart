@@ -18,8 +18,9 @@ class ProdDetailScreen extends StatefulWidget {
   String? price;
   String? status;
   String? prodId;
+  String? purchasePrice;
   ProdDetailScreen(
-      {this.name, this.image, this.price, this.status, this.prodId});
+      {this.name, this.image, this.price, this.status, this.prodId,this.purchasePrice});
 
   @override
   State<ProdDetailScreen> createState() => _ProdDetailScreenState();
@@ -125,102 +126,108 @@ class _ProdDetailScreenState extends State<ProdDetailScreen> {
               size: 30,
             )),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 250,
-              width: double.infinity,
-              child: widget.image != ''
-                  ? Image.network(im[selectedImage])
-                  : Image.asset(
-                      'assets/noprod.jpg',
-                      // height: 120,
-                      // width: 120,
-                      fit: BoxFit.cover,
-                    ),
-            ),
-            // SizedBox(height: getProportionateScreenWidth(20)),
-            Divider(
-              thickness: 1,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 250,
+                width: double.infinity,
+                child: widget.image != ''
+                    ? Image.network(im[selectedImage])
+                    : Image.asset(
+                        'assets/noprod.jpg',
+                        // height: 120,
+                        // width: 120,
+                        fit: BoxFit.cover,
+                      ),
+              ),
+              // SizedBox(height: getProportionateScreenWidth(20)),
+              Divider(
+                thickness: 1,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ...List.generate(
+                        im.length, (index) => buildSmallProductPreview(index)),
+                  ],
+                ),
+              ),
+              Divider(
+                thickness: 1,
+              ),
+              Text(
+                widget.name!,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey[700]),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text('Price : ${widget.price!}Tk',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF7859a5),
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
                 children: [
-                  ...List.generate(
-                      im.length, (index) => buildSmallProductPreview(index)),
+                  Text('Stock Availability:',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey[600],
+                      )),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  widget.status == 'a'
+                      ? Text('In Stock',
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold))
+                      : Text('Not Available',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.red,
+                          ))
                 ],
               ),
-            ),
-            Divider(
-              thickness: 1,
-            ),
-            Text(
-              widget.name!,
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey[700]),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text('Price : ${widget.price!}Tk',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF7859a5),
-                )),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                Text('Stock Availability:',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey[600],
-                    )),
-                SizedBox(
-                  width: 10,
-                ),
-                widget.status == 'a'
-                    ? Text('In Stock',
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold))
-                    : Text('Not Available',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.red,
-                        ))
-              ],
-            ),
 
-            /////////////for cart
-            ElevatedButton(
-                onPressed: () {
-                  _createCart(null);
-                },
-                child: Text('Add to cart')),
-            /////////////for checkout
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return OrderSummery(
-                      name: widget.name,
-                      image: widget.image,
-                      price: widget.price,
-                    );
-                  }));
-                },
-                child: Text('Buy Now')),
-          ],
+              /////////////for cart
+              ElevatedButton(
+                  onPressed: () {
+                    _createCart(null);
+                  },
+                  child: Text('Add to cart')),
+              /////////////for checkout
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return OrderSummery(
+                        name: widget.name,
+                        image: widget.image,
+                        price: widget.price,
+                        prodId: widget.prodId,
+                        purchasePrice: widget.purchasePrice,
+                        status: widget.status,
+                      );
+                    }));
+                  },
+                  child: Text('Buy Now')),
+            ],
+          ),
         ),
       ),
     );

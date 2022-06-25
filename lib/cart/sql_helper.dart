@@ -1,5 +1,9 @@
 import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart' as sql;
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart';
+import 'dart:io' as io;
 
 class SQLHelper {
   static Future<void> createTables(sql.Database database) async {
@@ -8,7 +12,7 @@ class SQLHelper {
         name TEXT,
         price TEXT,
         image TEXT,
-        // index INTEGER,
+       
         createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
       """);
@@ -18,8 +22,10 @@ class SQLHelper {
 // created_at: the time that the item was created. It will be automatically handled by SQLite
 
   static Future<sql.Database> db() async {
+    io.Directory documentDirectory = await getApplicationDocumentsDirectory() ;
+    String path = join(documentDirectory.path , 'cart.db');
     return sql.openDatabase(
-      'cart.db',
+      path,
       version: 1,
       onCreate: (sql.Database database, int version) async {
         await createTables(database);

@@ -8,3 +8,5 @@ const String BRAND = "$ROOT/androidApp/get_brand.php";
 const String COLOR = "$ROOT/androidApp/get_color.php";
 const String SLIDER = "$ROOT/androidApp/get_ads.php";
 const String CATWISEPROD = "$ROOT/androidApp/get_produts.php";
+const String SEARCH = "$ROOT/androidApp/get_search.php";
+const String ORDER = "$ROOT/androidApp/order.php";

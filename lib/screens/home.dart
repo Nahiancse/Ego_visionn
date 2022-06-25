@@ -6,8 +6,10 @@ import 'package:ego_visionn/models/category_model.dart';
 import 'package:ego_visionn/models/catwiseProdModel.dart';
 import 'package:ego_visionn/models/color_model.dart';
 import 'package:ego_visionn/models/corousel_model.dart';
+import 'package:ego_visionn/models/search_model.dart';
 import 'package:ego_visionn/models/typeModel.dart';
 import 'package:ego_visionn/screens/catwise_prod.dart';
+import 'package:ego_visionn/screens/search_screen.dart';
 import 'package:ego_visionn/widgets/bottomNav.dart';
 import 'package:ego_visionn/widgets/drawer.dart';
 import 'package:flutter/material.dart';
@@ -132,7 +134,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -140,6 +141,31 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.start,
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                GestureDetector(
+                  onTap: () async {
+                    fetchSearch();
+                  },
+                  child: Container(
+                      // alignment: Alignment.center,
+                      padding: EdgeInsets.only(left: 120),
+                      color: Color(0xFF7859a5),
+                      width: double.infinity,
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.search_rounded,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'Search',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
+                      )),
+                ),
                 Text(
                   'Types',
                   style: TextStyle(
@@ -441,14 +467,14 @@ class _HomeState extends State<Home> {
                           //     ),
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                       margin: EdgeInsets.only(top: 20, bottom: 20),
-                      height: 200,
+                      height: 300,
                       width: double.infinity,
                       child: CarouselSlider(
                           options: CarouselOptions(
                             autoPlay: true,
                             autoPlayAnimationDuration:
                                 Duration(milliseconds: 100),
-                            height: 200,
+                            height: 300,
                             aspectRatio: 5,
                             viewportFraction: 1.0,
                             autoPlayInterval: Duration(seconds: 3),
@@ -838,6 +864,22 @@ class _HomeState extends State<Home> {
     } else {
       // scaffoldMessenger
       //     .showSnackBar(SnackBar(content: Text("Please try again!")));
+    }
+  }
+
+  ///////get search
+  fetchSearch() async {
+    final response = await http.get(Uri.parse(SEARCH));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      SearchModel resposne = SearchModel.fromJson(jsonDecode(response.body));
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return SearchScreen(
+          resposne: resposne,
+        );
+      }));
     }
   }
 }

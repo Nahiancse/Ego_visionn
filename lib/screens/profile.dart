@@ -14,8 +14,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   var _savedName;
   var _savedPhone;
   var _savedAddress;
-  dynamic _savedOrganaization;
-  String? _savedUserId;
+  var _savedOrganaization;
+  var _savedUserId;
   // Retrieve the saved name if it exists
   @override
   void initState() {
@@ -111,6 +111,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text('UserId'),
                       SizedBox(width: 100),
                       Text(_savedUserId!),
+                    ],
+                  ),
+                  Divider(
+                    thickness: 2,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Organization'),
+                      SizedBox(width: 100),
+                      Text(_savedOrganaization),
                     ],
                   ),
                 ],
