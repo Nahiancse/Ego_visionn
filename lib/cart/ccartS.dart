@@ -63,6 +63,28 @@ class _CartScreenState extends State<CartScreenn> {
         body: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(children: [
+              _carts.isEmpty ?Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        Image(
+                          image: AssetImage('assets/empty_cart.png'),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text('Your cart is empty 😌',
+                            style: Theme.of(context).textTheme.headline5),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                            'Explore products and shop your\nfavourite items',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.subtitle2)
+                      ],
+                    ),
+                  ):
               // if (_carts.isNotEmpty) {
               //   if (_carts.isEmpty) {
               //     return Align(
