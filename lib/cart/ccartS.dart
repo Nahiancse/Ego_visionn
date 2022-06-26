@@ -11,6 +11,19 @@ class CartScreenn extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreenn> {
+  var quantity = 1;
+  void _incrementCounter() {
+    setState(() {
+      quantity++;
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      quantity--;
+    });
+  }
+
 // All cart
   List<Map<String, dynamic>> _carts = [];
   bool _isLoading = true;
@@ -164,17 +177,23 @@ class _CartScreenState extends State<CartScreenn> {
                                                           .spaceBetween,
                                                   children: [
                                                     InkWell(
-                                                        onTap: () {},
+                                                        onTap: () {
+                                                          if (quantity != 0) {
+                                                            _decrementCounter();
+                                                          }
+                                                        },
                                                         child: Icon(
                                                           Icons.remove,
                                                           color: Colors.white,
                                                         )),
-                                                    Text('',
+                                                    Text('$quantity',
                                                         style: TextStyle(
                                                             color:
                                                                 Colors.white)),
                                                     InkWell(
-                                                        onTap: () {},
+                                                        onTap: () {
+                                                          _incrementCounter();
+                                                        },
                                                         child: Icon(
                                                           Icons.add,
                                                           color: Colors.white,
@@ -196,56 +215,52 @@ class _CartScreenState extends State<CartScreenn> {
                       );
                     }),
               ),
-            //   Visibility(
-            //     visible: value.getTotalPrice().toStringAsFixed(2) == "0.00"
-            //         ? false
-            //         : true,
-            //     child: Column(
-            //       children: [
-            //         ReusableWidget(
-            //           title: 'Sub Total',
-            //           value: r'$' + value.getTotalPrice().toStringAsFixed(2),
-            //         ),
-            //         ReusableWidget(
-            //           title: 'Discout 5%',
-            //           value: r'$' + '20',
-            //         ),
-            //         ReusableWidget(
-            //           title: 'Total',
-            //           value: r'$' + value.getTotalPrice().toStringAsFixed(2),
-            //         ),
-            //         InkWell(
-            //   onTap: () {
-            //     Navigator.push(context, MaterialPageRoute(builder: (context) {
-            //       return Checkout(subtotal: value.getTotalPrice().toInt());
-            //     }));
-            //   },
-            //   child: Container(
-            //     height: 40,
-            //     width: 150,
-            //     alignment: Alignment.center,
-            //     decoration: BoxDecoration(
-            //       color: Colors.black,
-            //       borderRadius: BorderRadius.all(Radius.circular(10)),
-            //     ),
-            //     child: Text(
-            //       'Buy Now',
-            //       style: TextStyle(
-            //           color: Colors.white,
-            //           fontSize: 18,
-            //           fontWeight: FontWeight.bold),
-            //     ),
-            //   ),
-            // ),
-            //       ],
-                  
-            //     ),
-            //   )
-            
-            ]
-            )
-            )
-            );
+              //   Visibility(
+              //     visible: value.getTotalPrice().toStringAsFixed(2) == "0.00"
+              //         ? false
+              //         : true,
+              //     child: Column(
+              //       children: [
+              //         ReusableWidget(
+              //           title: 'Sub Total',
+              //           value: r'$' + value.getTotalPrice().toStringAsFixed(2),
+              //         ),
+              //         ReusableWidget(
+              //           title: 'Discout 5%',
+              //           value: r'$' + '20',
+              //         ),
+              //         ReusableWidget(
+              //           title: 'Total',
+              //           value: r'$' + value.getTotalPrice().toStringAsFixed(2),
+              //         ),
+              //         InkWell(
+              //   onTap: () {
+              //     Navigator.push(context, MaterialPageRoute(builder: (context) {
+              //       return Checkout(subtotal: value.getTotalPrice().toInt());
+              //     }));
+              //   },
+              //   child: Container(
+              //     height: 40,
+              //     width: 150,
+              //     alignment: Alignment.center,
+              //     decoration: BoxDecoration(
+              //       color: Colors.black,
+              //       borderRadius: BorderRadius.all(Radius.circular(10)),
+              //     ),
+              //     child: Text(
+              //       'Buy Now',
+              //       style: TextStyle(
+              //           color: Colors.white,
+              //           fontSize: 18,
+              //           fontWeight: FontWeight.bold),
+              //     ),
+              //   ),
+              // ),
+              //       ],
+
+              //     ),
+              //   )
+            ])));
   }
 }
 

@@ -2,6 +2,7 @@ import 'package:ego_visionn/screens/home.dart';
 import 'package:ego_visionn/screens/profile.dart';
 import 'package:ego_visionn/widgets/drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({
@@ -18,7 +19,6 @@ class _BottomNavState extends State<BottomNav> {
     Home(),
     ProfileScreen(),
     Home(),
-    
     Home(),
     ProfileScreen(),
   ];
@@ -29,11 +29,55 @@ class _BottomNavState extends State<BottomNav> {
     });
   }
 
+  var _savedName;
+  // var _savedAddress;
+  // var _savedOrganaization;
+  var _savedUserId;
+  // Retrieve the saved name if it exists
+  @override
+  void initState() {
+    super.initState();
+    _retrieveName();
+  }
+
+  Future<void> _retrieveName() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    // Check where the name is saved before or not
+    // if (!prefs.containsKey('name')) {
+    //   return;
+    // }
+
+    setState(() {
+      _savedUserId = prefs.getString('userId')!;
+      _savedName = prefs.getString('name')!;
+      // _savedPhone = prefs.getString('phone');
+      // _savedAddress = prefs.getString('address');
+      // _savedOrganaization = prefs.getString('organization');
+      // _savedUserId = prefs.getString('userId');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: OpenDrawer(),
       appBar: AppBar(
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: Row(
+              children: [
+                _savedUserId != null ? Text(_savedName) : Text(''),
+                _savedUserId != null
+                    ? CircleAvatar(
+                        backgroundImage: AssetImage('assets/propic.jpg'),
+                      )
+                    : Text(''),
+              ],
+            ),
+          )
+        ],
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(

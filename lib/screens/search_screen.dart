@@ -65,7 +65,12 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(backgroundColor: Color(0xFF7859a5),title: Text('Search',style: TextStyle(color:Colors.white),)),
+        appBar: AppBar(
+            backgroundColor: Color(0xFF7859a5),
+            title: Text(
+              'Search',
+              style: TextStyle(color: Colors.white),
+            )),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
@@ -73,16 +78,20 @@ class _SearchScreenState extends State<SearchScreen> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                        color: Colors.white,
-              border: Border.all(
-                color: Colors.purple,
-              ),
-              borderRadius: BorderRadius.circular(10.0),),
+                    color: Colors.white,
+                    border: Border.all(
+                      color: Colors.purple,
+                    ),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                   child: TextField(
+                    keyboardType: TextInputType.text,
+                    autofocus: true,
                     onChanged: (value) => _runFilter(value),
                     decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.all(10),
-                        labelText: 'Search', suffixIcon: Icon(Icons.search)),
+                        contentPadding: EdgeInsets.all(10),
+                        labelText: 'Search',
+                        suffixIcon: Icon(Icons.search)),
                   ),
                 ),
                 const SizedBox(
@@ -102,12 +111,12 @@ class _SearchScreenState extends State<SearchScreen> {
                                     return ProdDetailScreen(
                                       name: _foundUsers[index].productName!,
                                       image: _foundUsers[index].image!,
-                                      price:
-                                          _foundUsers[index].productSellingPrice,
+                                      price: _foundUsers[index]
+                                          .productSellingPrice,
                                       status: 'a',
                                       prodId: _foundUsers[index].productSlNo,
-                                      purchasePrice:
-                                          _foundUsers[index].productPurchaseRate,
+                                      purchasePrice: _foundUsers[index]
+                                          .productPurchaseRate,
                                     );
                                   }));
                                 },

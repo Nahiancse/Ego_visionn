@@ -48,12 +48,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           children: [
             CircleAvatar(
-              radius: 30,
+              backgroundImage: AssetImage('assets/propic.jpg'),
+              radius: 50,
             ),
             Card(
               child: Container(
                 padding: EdgeInsets.only(top: 10, bottom: 10),
-                margin: EdgeInsets.only(left: 30, right: 30,top:30),
+                margin: EdgeInsets.only(left: 30, right: 30, top: 15),
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +63,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       padding: EdgeInsets.all(8),
                       width: double.infinity,
                       height: 40,
-                      child: Text('Info',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                      child: Text(
+                        'Info',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
                       color: Color(0xFF7859a5),
                     ),
                     Row(
@@ -125,7 +130,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         Text('Organization'),
                         SizedBox(width: 100),
-                        Text(_savedOrganaization),
+                        _savedOrganaization == null
+                            ? Text('')
+                            : Text(_savedOrganaization),
                       ],
                     ),
                   ],

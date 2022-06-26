@@ -1,14 +1,64 @@
 import 'package:ego_visionn/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class OpenDrawer extends StatelessWidget {
+class OpenDrawer extends StatefulWidget {
   const OpenDrawer({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<OpenDrawer> createState() => _OpenDrawerState();
+}
+
+class _OpenDrawerState extends State<OpenDrawer> {
+  // late ScaffoldMessengerState scaffoldMessenger;
+  // GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  // var _savedName;
+  // var _savedAddress;
+  // var _savedOrganaization;
+  var _savedUserId;
+  // Retrieve the saved name if it exists
+  @override
+  void initState() {
+    super.initState();
+    _retrieveName();
+  }
+
+  Future<void> _retrieveName() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    // Check where the name is saved before or not
+    // if (!prefs.containsKey('name')) {
+    //   return;
+    // }
+
+    setState(() {
+      _savedUserId = prefs.getString('userId')!;
+      // _savedPhone = prefs.getString('phone');
+      // _savedAddress = prefs.getString('address');
+      // _savedOrganaization = prefs.getString('organization');
+      // _savedUserId = prefs.getString('userId');
+    });
+  }
+
+  Future<void> _clearName() async {
+    final prefs = await SharedPreferences.getInstance();
+    // Check where the name is saved before or not
+    // if (!prefs.containsKey('name')) {
+    //   return;
+    // }
+
+    await prefs.remove('userId');
+    setState(() {
+      _savedUserId = null;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Drawer(
+      // key: _scaffoldKey,
       child: ListView(
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
@@ -21,7 +71,7 @@ class OpenDrawer extends StatelessWidget {
             child: Column(
               children: [
                 CircleAvatar(
-                  backgroundImage: AssetImage('assets/purpIcon.jpg'),
+                  backgroundImage: AssetImage('assets/propic.jpg'),
                   radius: 35,
                 ),
                 SizedBox(
@@ -64,7 +114,11 @@ class OpenDrawer extends StatelessWidget {
                   color: Color(0xFF7859a5), fontWeight: FontWeight.bold),
             ),
             onTap: () {
-              Navigator.pop(context);
+              // _savedUserId == null
+              //     ? scaffoldMessenger
+              //         .showSnackBar(SnackBar(content: Text("please login!")))
+              //     : Navigator.pop(context);
+              // Scaffold.of(context).showSnackBar(snackBar);
             },
           ),
           ListTile(
@@ -78,16 +132,93 @@ class OpenDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text(
-              "Login",
-              style: TextStyle(
-                  color: Color(0xFF7859a5), fontWeight: FontWeight.bold),
-            ),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return LoginPage();
-              }));
-            },
+            title: _savedUserId == null
+                ? GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return LoginPage();
+                      }));
+                    },
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                          color: Color(0xFF7859a5),
+                          fontWeight: FontWeight.bold),
+                    ),
+                  )
+                : GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text("Want to Logout?"),
+                              // content: Text("This is an alert message."),
+                              actions: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    FlatButton(
+                                      child: Text("Cancel"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    FlatButton(
+                                      child: Text("OK"),
+                                      onPressed: () {
+                                        _clearName();
+                                        Navigator.pushReplacement(context,
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return LoginPage();
+                                        }));
+                                      },
+                                    )
+                                  ],
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                    child: Text(
+                      "Logout",
+                      style: TextStyle(
+                          color: Color(0xFF7859a5),
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+            // onTap: () {
+            //   _savedUserId != null
+            //       ? Navigator.push(context,
+            //           MaterialPageRoute(builder: (context) {
+            //           return LoginPage();
+            //         }))
+            //       : AlertDialog(
+            //           title: Text("Want to Logout"),
+            //           content: Text("This is an alert message."),
+            //           actions: [
+            //             FlatButton(
+            //               child: Text("Cancel"),
+            //               onPressed: () {
+            //                 Navigator.of(context).pop();
+            //               },
+            //             ),
+            //             FlatButton(
+            //               child: Text("OK"),
+            //               onPressed: () {
+            //                 _clearName;
+            //                 Navigator.pushReplacement(context,
+            //                     MaterialPageRoute(builder: (context) {
+            //                   return LoginPage();
+            //                 }));
+            //               },
+            //             )
+            //           ],
+            //         );
+            // },
           ),
         ],
       ),

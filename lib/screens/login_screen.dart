@@ -74,145 +74,164 @@ class _LoginPageState extends State<LoginPage> {
     scaffoldMessenger = ScaffoldMessenger.of(context);
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Customer Login',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 40,
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.only(top: 100),
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'Customer Login',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 40,
+                    color: Colors.purple),
               ),
-            ),
-            const SizedBox(
-              height: 60,
-            ),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: loginIdController,
-                    // validator: (value) => EmailValidator.validate(value!)
-                    //     ? null
-                    //     : "Please enter a valid ID",
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your ID';
-                      }
-                      return null;
-                    },
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      hintText: 'User ID',
-                      hintStyle: TextStyle(color: Colors.white70, fontSize: 15),
-                      // prefixIcon: const Icon(Icons.email),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    // onSaved: (val) {
-                    //           id = val!;
-                    //         },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: loginPassController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your password';
-                      }
-                      return null;
-                    },
-                    maxLines: 1,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      // prefixIcon: const Icon(Icons.lock),
-                      hintText: 'Password',
-                      hintStyle: TextStyle(color: Colors.white70, fontSize: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                  // CheckboxListTile(
-                  //   title: const Text("Remember me"),
-                  //   contentPadding: EdgeInsets.zero,
-                  //   value: rememberValue,
-                  //   activeColor: Theme.of(context).colorScheme.primary,
-                  //   onChanged: (newValue) {
-                  //     setState(() {
-                  //       rememberValue = newValue!;
-                  //     });
-                  //   },
-                  //   controlAffinity: ListTileControlAffinity.leading,
-                  // ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        // Navigator.push(context, MaterialPageRoute(builder: (context){
-                        //   return MyNavigationBar();
-
-                        // }));
-                        // setState(() {
-                        //   _futureAlbum = createAlbum(
-                        //       loginIdController.text, loginPassController.text);
-                        // });
-                        //  _futureAlbum = createAlbum(
-                        //       loginIdController.text, loginPassController.text);
-                        print('object');
-                        login(loginIdController.text, loginPassController.text);
-                        // var data = await UserLogin();
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) {
-                        //   return Home();
-                        // }));
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
-                    ),
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Don\'t have an account yet?'),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const RegisterPage(title: 'Register UI'),
+              const SizedBox(
+                height: 60,
+              ),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    Card(
+                      elevation: 5,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            controller: loginIdController,
+                            // validator: (value) => EmailValidator.validate(value!)
+                            //     ? null
+                            //     : "Please enter a valid ID",
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your ID';
+                              }
+                              return null;
+                            },
+                            maxLines: 1,
+                            decoration: InputDecoration(
+                              hintText: 'User ID',
+                              hintStyle:
+                                  TextStyle(color: Colors.purple, fontSize: 15),
+                              // prefixIcon: const Icon(Icons.email),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                             ),
-                          );
-                        },
-                        child: const Text('Registration'),
+                            // onSaved: (val) {
+                            //           id = val!;
+                            //         },
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            controller: loginPassController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your password';
+                              }
+                              return null;
+                            },
+                            maxLines: 1,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              // prefixIcon: const Icon(Icons.lock),
+                              hintText: 'Password',
+                              hintStyle:
+                                  TextStyle(color: Colors.purple, fontSize: 15),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
+                    ),
+
+                    // CheckboxListTile(
+                    //   title: const Text("Remember me"),
+                    //   contentPadding: EdgeInsets.zero,
+                    //   value: rememberValue,
+                    //   activeColor: Theme.of(context).colorScheme.primary,
+                    //   onChanged: (newValue) {
+                    //     setState(() {
+                    //       rememberValue = newValue!;
+                    //     });
+                    //   },
+                    //   controlAffinity: ListTileControlAffinity.leading,
+                    // ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () async {
+                        if (_formKey.currentState!.validate()) {
+                          // Navigator.push(context, MaterialPageRoute(builder: (context){
+                          //   return MyNavigationBar();
+
+                          // }));
+                          // setState(() {
+                          //   _futureAlbum = createAlbum(
+                          //       loginIdController.text, loginPassController.text);
+                          // });
+                          //  _futureAlbum = createAlbum(
+                          //       loginIdController.text, loginPassController.text);
+                          print('object');
+                          login(
+                              loginIdController.text, loginPassController.text);
+                          // var data = await UserLogin();
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (context) {
+                          //   return Home();
+                          // }));
+                        }
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        width: 120,
+                        color: Colors.purple,
+                        child: const Text(
+                          'Login',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Don\'t have an account yet?'),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const RegisterPage(title: 'Register UI'),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            'Registration',
+                            style: TextStyle(color: Colors.green),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -305,7 +324,7 @@ class _LoginPageState extends State<LoginPage> {
       // preferences.setString("image", user['image']);
       preferences.setString("status", user['status']);
       preferences.setString("branchId", user['branch_id']);
-      // preferences.setString("Id", user['id']);
+      preferences.setBool('login', true);
       // preferences.setString("password", user['password']);
       // savePref(
       //   user['code'],

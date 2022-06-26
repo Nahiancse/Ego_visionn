@@ -33,166 +33,185 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Registration',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 40,
+      // backgroundColor: Theme.of(context).colorScheme.background,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.only(top: 100),
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'Registration',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 40,
+                    color: Colors.purple),
               ),
-            ),
-            const SizedBox(
-              height: 60,
-            ),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  // Row(
-                  //   children: [
-                  //     Expanded(
-                  //       child: TextFormField(
-                  //         validator: (value) => EmailValidator.validate(value!)
-                  //             ? null
-                  //             : "Please enter a valid email",
-                  //         maxLines: 1,
-                  //         decoration: InputDecoration(
-                  //           hintText: 'First name',
-                  //           prefixIcon: const Icon(Icons.person),
-                  //           border: OutlineInputBorder(
-                  //             borderRadius: BorderRadius.circular(10),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     const SizedBox(
-                  //       width: 20,
-                  //     ),
-                  //     Expanded(
-                  //       child: TextFormField(
-                  //         validator: (value) => EmailValidator.validate(value!)
-                  //             ? null
-                  //             : "Please enter a valid email",
-                  //         maxLines: 1,
-                  //         decoration: InputDecoration(
-                  //           hintText: 'Last name',
-                  //           prefixIcon: const Icon(Icons.person),
-                  //           border: OutlineInputBorder(
-                  //             borderRadius: BorderRadius.circular(10),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: signUpIdController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your ID';
-                      }
-                      return null;
-                    },
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      hintText: 'Type your id',
-                      // prefixIcon: const Icon(Icons.email),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+              const SizedBox(
+                height: 60,
+              ),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //       child: TextFormField(
+                    //         validator: (value) => EmailValidator.validate(value!)
+                    //             ? null
+                    //             : "Please enter a valid email",
+                    //         maxLines: 1,
+                    //         decoration: InputDecoration(
+                    //           hintText: 'First name',
+                    //           prefixIcon: const Icon(Icons.person),
+                    //           border: OutlineInputBorder(
+                    //             borderRadius: BorderRadius.circular(10),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     const SizedBox(
+                    //       width: 20,
+                    //     ),
+                    //     Expanded(
+                    //       child: TextFormField(
+                    //         validator: (value) => EmailValidator.validate(value!)
+                    //             ? null
+                    //             : "Please enter a valid email",
+                    //         maxLines: 1,
+                    //         decoration: InputDecoration(
+                    //           hintText: 'Last name',
+                    //           prefixIcon: const Icon(Icons.person),
+                    //           border: OutlineInputBorder(
+                    //             borderRadius: BorderRadius.circular(10),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    const SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  // TextFormField(
-                  //   validator: (value) {
-                  //     if (value == null || value.isEmpty) {
-                  //       return 'Please enter your password';
-                  //     }
-                  //     return null;
-                  //   },
-                  //   maxLines: 1,
-                  //   obscureText: true,
-                  //   decoration: InputDecoration(
-                  //     prefixIcon: const Icon(Icons.lock),
-                  //     hintText: 'Enter your password',
-                  //     border: OutlineInputBorder(
-                  //       borderRadius: BorderRadius.circular(10),
-                  //     ),
-                  //   ),
-                  // ),
-                  TextFormField(
-                    controller: signUpEmailController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your mail';
-                      }
-                      return null;
-                    },
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      hintText: 'Type your e-mail',
-                      // prefixIcon: const Icon(Icons.email),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        print('object');
-                        registration(signUpIdController.text,
-                            signUpEmailController.text);
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
-                    ),
-                    child: const Text(
-                      'Registration',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Have an account'),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginPage(),
+                    Card(
+                      elevation: 5,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            controller: signUpIdController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your ID';
+                              }
+                              return null;
+                            },
+                            maxLines: 1,
+                            decoration: InputDecoration(
+                              hintText: 'Type your id',
+                              hintStyle:
+                                  TextStyle(color: Colors.purple, fontSize: 15),
+                              // prefixIcon: const Icon(Icons.email),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                             ),
-                          );
-                        },
-                        child: const Text('Login'),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          // TextFormField(
+                          //   validator: (value) {
+                          //     if (value == null || value.isEmpty) {
+                          //       return 'Please enter your password';
+                          //     }
+                          //     return null;
+                          //   },
+                          //   maxLines: 1,
+                          //   obscureText: true,
+                          //   decoration: InputDecoration(
+                          //     prefixIcon: const Icon(Icons.lock),
+                          //     hintText: 'Enter your password',
+                          //     border: OutlineInputBorder(
+                          //       borderRadius: BorderRadius.circular(10),
+                          //     ),
+                          //   ),
+                          // ),
+                          TextFormField(
+                            controller: signUpEmailController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your mail';
+                              }
+                              return null;
+                            },
+                            maxLines: 1,
+                            decoration: InputDecoration(
+                              hintText: 'Type your e-mail',
+                              hintStyle:
+                                  TextStyle(color: Colors.purple, fontSize: 15),
+                              // prefixIcon: const Icon(Icons.email),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        if (_formKey.currentState!.validate()) {
+                          print('object');
+                          registration(signUpIdController.text,
+                              signUpEmailController.text);
+                        }
+                      },
+                      child: Container(
+                        width: 120,
+                        height: 50,
+                        alignment: Alignment.center,
+                        color: Colors.purple,
+                        child: const Text(
+                          'Registration',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Have an account'),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LoginPage(),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            'Login',
+                            style: TextStyle(color: Colors.green),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -223,7 +242,8 @@ class _RegisterPageState extends State<RegisterPage> {
           context,
           MaterialPageRoute(
               builder: (context) => OtpScreen(
-                    mmail: email,id: id,
+                    mmail: email,
+                    id: id,
                   )));
 
       print(" ${user['success']}");

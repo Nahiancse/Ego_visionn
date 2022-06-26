@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ego_visionn/apis/api.dart';
 import 'package:ego_visionn/screens/home.dart';
+import 'package:ego_visionn/widgets/bottomNav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -216,6 +217,9 @@ class _OrderSummeryState extends State<OrderSummery> {
   login(prodId, saleRate, purchaseRate, quantity, total, prodStatus, custId,
       orderDate, custStatus, note, subtotal, branchId) async {
     Map data = {
+      // 'params': 'hi',
+      // 'cart': prodId,
+
       'cart': [
         // {prodId, saleRate, purchaseRate, quantity, total, prodStatus}
         {
@@ -250,12 +254,13 @@ class _OrderSummeryState extends State<OrderSummery> {
     if (response.statusCode == 200) {
       print(response.body);
       print(response.statusCode);
-      
+
       // Map<String, dynamic> resposne = jsonDecode(response.body);
 
       // // Map<String, dynamic> user = resposne['user'];
       // print(resposne);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => BottomNav()));
       // print('success');
       // print(" User name ${user['name']}");
       // SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -291,6 +296,6 @@ class _OrderSummeryState extends State<OrderSummery> {
       // print(" ${resposne['success']}");
 
     }
-    print('something');
+    // print('something');
   }
 }
