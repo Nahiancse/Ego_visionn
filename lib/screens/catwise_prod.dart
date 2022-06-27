@@ -1,5 +1,6 @@
+import 'package:ego_visionn/democart/dddetail.dart';
 import 'package:ego_visionn/models/catwiseProdModel.dart';
-import 'package:ego_visionn/screens/prod_details.dart';
+ 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -128,14 +129,23 @@ class _CatWiseProdScreenState extends State<CatWiseProdScreen> {
                                 onTap: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return ProdDetailScreen(
+                                    return DProdDetailScreen(
                                       prodId: _foundUsers[index].productSlNo,
                                       image:_foundUsers[index].image ,
                                       name: _foundUsers[index].productName,
                                       status:_foundUsers[index].status ,
                                       price: _foundUsers[index].productSellingPrice,
                                       purchasePrice:_foundUsers[index].productPurchaseRate ,
+                                      index: index,
                                       );
+                                      // return ProdDetailScreen(
+                                      // prodId: _foundUsers[index].productSlNo,
+                                      // image:_foundUsers[index].image ,
+                                      // name: _foundUsers[index].productName,
+                                      // status:_foundUsers[index].status ,
+                                      // price: _foundUsers[index].productSellingPrice,
+                                      // purchasePrice:_foundUsers[index].productPurchaseRate ,
+                                      // );
                                       
                                   }));
                                 },

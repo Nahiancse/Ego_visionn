@@ -1,6 +1,7 @@
+import 'package:ego_visionn/democart/cart_screen.dart';
 import 'package:ego_visionn/screens/home.dart';
 import 'package:ego_visionn/screens/profile.dart';
-import 'package:ego_visionn/cart/ccartS.dart';
+ 
 import 'package:ego_visionn/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,7 +20,7 @@ class _BottomNavState extends State<BottomNav> {
   static const List<Widget> _widgetOptions = <Widget>[
     Home(),
     ProfileScreen(),
-    CartScreenn(),
+    FCartScreen(),
     Home(),
     ProfileScreen(),
   ];

@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:ego_visionn/apis/api.dart';
+import 'package:ego_visionn/democart/dddetail.dart';
 import 'package:ego_visionn/models/search_model.dart';
-import 'package:ego_visionn/screens/prod_details.dart';
+ 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -108,7 +109,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 onTap: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return ProdDetailScreen(
+                                    return DProdDetailScreen(
                                       name: _foundUsers[index].productName!,
                                       image: _foundUsers[index].image!,
                                       price: _foundUsers[index]
