@@ -146,16 +146,16 @@ class _HomeState extends State<Home> {
                     fetchSearch();
                   },
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-    border: Border.all(
-      color: Colors.purple,
-    ),
-    borderRadius: BorderRadius.circular(10.0),),
-                    height:40,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.purple,
+                        ),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      height: 40,
                       // alignment: Alignment.center,
                       padding: EdgeInsets.only(left: 120),
-                      
                       width: double.infinity,
                       child: Row(
                         children: [
@@ -174,8 +174,8 @@ class _HomeState extends State<Home> {
                       )),
                 ),
                 SizedBox(
-                            height: 20,
-                          ),
+                  height: 10,
+                ),
                 Text(
                   'Types',
                   style: TextStyle(
@@ -200,8 +200,8 @@ class _HomeState extends State<Home> {
                                 itemBuilder: (context, index) {
                                   return GestureDetector(
                                     onTap: () async {
-                                      type_filter(snapshot
-                                          .data!.contents![index].id);
+                                      type_filter(
+                                          snapshot.data!.contents![index].id);
                                     },
                                     child: Container(
                                       // padding:EdgeInsets.all(8),
@@ -221,8 +221,8 @@ class _HomeState extends State<Home> {
                                             ),
                                             Flexible(
                                               child: Text(
-                                                snapshot.data!
-                                                    .contents![index].name!,
+                                                snapshot.data!.contents![index]
+                                                    .name!,
                                                 style: TextStyle(
                                                     // fontSize: 16,
                                                     fontWeight:
@@ -261,7 +261,7 @@ class _HomeState extends State<Home> {
                         if (snapshot.hasData) {
                           return Container(
                             width: double.infinity,
-                            height: 110,
+                            height: 100,
                             child: ListView.builder(
                                 shrinkWrap: true,
                                 itemCount: snapshot.data!.contents!.length,
@@ -291,9 +291,7 @@ class _HomeState extends State<Home> {
                                             ),
                                             Flexible(
                                               child: Text(
-                                                snapshot
-                                                    .data!
-                                                    .contents![index]
+                                                snapshot.data!.contents![index]
                                                     .productCategoryName!,
                                                 style: TextStyle(
                                                     // fontSize: 1,
@@ -341,8 +339,8 @@ class _HomeState extends State<Home> {
                                 itemBuilder: (context, index) {
                                   return GestureDetector(
                                     onTap: () async {
-                                      brand_category(snapshot.data!
-                                          .contents![index].brandSiNo);
+                                      brand_category(snapshot
+                                          .data!.contents![index].brandSiNo);
                                     },
                                     child: Container(
                                       width: 100,
@@ -361,9 +359,7 @@ class _HomeState extends State<Home> {
                                             ),
                                             Flexible(
                                               child: Text(
-                                                snapshot
-                                                    .data!
-                                                    .contents![index]
+                                                snapshot.data!.contents![index]
                                                     .brandName!,
                                                 style: TextStyle(
                                                     // fontSize: 16,
@@ -411,8 +407,8 @@ class _HomeState extends State<Home> {
                                 itemBuilder: (context, index) {
                                   return GestureDetector(
                                     onTap: () async {
-                                      color_category(snapshot.data!
-                                          .contents![index].colorSiNo);
+                                      color_category(snapshot
+                                          .data!.contents![index].colorSiNo);
                                     },
                                     child: Container(
                                       width: 100,
@@ -431,9 +427,7 @@ class _HomeState extends State<Home> {
                                             ),
                                             Flexible(
                                               child: Text(
-                                                snapshot
-                                                    .data!
-                                                    .contents![index]
+                                                snapshot.data!.contents![index]
                                                     .colorName!,
                                                 style: TextStyle(
                                                     // fontSize: 16,
@@ -454,7 +448,7 @@ class _HomeState extends State<Home> {
                         }
 
                         // By default, show a loading spinner.
-                       return Text('');
+                        return Text('');
                       }),
                 ),
                 Stack(
