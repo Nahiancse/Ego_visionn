@@ -1,5 +1,5 @@
 // import 'package:ego_visionn/cart/cart_provider.dart';
-import 'package:ego_visionn/democart/cart_provider.dart';
+import 'package:ego_visionn/cart/cart_provider.dart';
 import 'package:ego_visionn/screens/home.dart';
 import 'package:ego_visionn/widgets/bottomNav.dart';
 import 'package:flutter/material.dart';

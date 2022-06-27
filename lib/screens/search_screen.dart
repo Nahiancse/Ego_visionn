@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:ego_visionn/apis/api.dart';
-import 'package:ego_visionn/democart/dddetail.dart';
+import 'package:ego_visionn/cart/product_detail.dart';
 import 'package:ego_visionn/models/search_model.dart';
  
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
 import 'package:badges/badges.dart';
-import 'package:ego_visionn/democart/cart_model.dart';
-import 'package:ego_visionn/democart/cart_provider.dart';
-import 'package:ego_visionn/democart/db_helper.dart';
+import 'package:ego_visionn/cart/cart_model.dart';
+import 'package:ego_visionn/cart/cart_provider.dart';
+import 'package:ego_visionn/cart/db_helper.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

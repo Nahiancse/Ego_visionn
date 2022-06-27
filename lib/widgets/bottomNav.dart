@@ -1,7 +1,8 @@
-import 'package:ego_visionn/democart/cart_screen.dart';
+import 'package:ego_visionn/cart/cart_screen.dart';
 import 'package:ego_visionn/screens/home.dart';
+import 'package:ego_visionn/screens/login_screen.dart';
 import 'package:ego_visionn/screens/profile.dart';
- 
+
 import 'package:ego_visionn/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,7 +18,7 @@ class BottomNav extends StatefulWidget {
 
 class _BottomNavState extends State<BottomNav> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
+  List<Widget> _widgetOptions = <Widget>[
     Home(),
     ProfileScreen(),
     FCartScreen(),
@@ -28,6 +29,33 @@ class _BottomNavState extends State<BottomNav> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      if (_savedUserId == null) {
+        _selectedIndex = 0;
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(
+            "Please Login",
+            style: TextStyle(color: Colors.white),
+          ),
+          action: SnackBarAction(
+            textColor: Colors.white,
+            label: 'Login',
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return LoginPage();
+              }));
+            },
+          ),
+        ));
+        // _widgetOptions[2] = FCartScreen();
+      } else {
+        // _widgetOptions[0] = Home();
+        // _widgetOptions[1] = Home();
+        // _widgetOptions[2] = FCartScreen();
+        // _widgetOptions[3] = Home();
+        // _widgetOptions[4] = ProfileScreen();
+      }
     });
   }
 

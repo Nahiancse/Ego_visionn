@@ -252,10 +252,11 @@ class _OrderSummeryState extends State<OrderSummery> {
     //   isLoading=false;
     // });
     if (response.statusCode == 200) {
-      print(response.body);
+      // Map<String, dynamic> resposnes = jsonDecode(response.body);
+      // print(response.body);
       print(response.statusCode);
-
-      // Map<String, dynamic> resposne = jsonDecode(response.body);
+      print(response.body);
+      // print(resposnes.toString());
 
       // // Map<String, dynamic> user = resposne['user'];
       // print(resposne);

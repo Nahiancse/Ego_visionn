@@ -1,5 +1,6 @@
 import 'package:ego_visionn/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OpenDrawer extends StatefulWidget {
@@ -170,11 +171,21 @@ class _OpenDrawerState extends State<OpenDrawer> {
                                       child: Text("OK"),
                                       onPressed: () {
                                         _clearName();
-                                        Navigator.pushReplacement(context,
-                                            MaterialPageRoute(
-                                                builder: (context) {
-                                          return LoginPage();
-                                        }));
+                                        Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                LoginPage(),
+                                          ),
+                                          (route) => false,
+                                        );
+                                        // Navigator.pushReplacement(context,
+                                        //     MaterialPageRoute(
+                                        //         builder: (context) {
+                                        //   return LoginPage();
+                                        // }));
+
+                                        // SystemNavigator.pop();
                                       },
                                     )
                                   ],

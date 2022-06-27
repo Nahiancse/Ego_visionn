@@ -338,7 +338,7 @@ class _LoginPageState extends State<LoginPage> {
       //   user['id'],
       //   user['password'],
       // );
-      Navigator.push(
+      Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => BottomNav()));
 
       print(" ${resposne['success']}");

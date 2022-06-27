@@ -1,4 +1,4 @@
-import 'package:ego_visionn/democart/cart_model.dart';
+import 'package:ego_visionn/cart/cart_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';

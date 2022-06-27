@@ -2,10 +2,10 @@ import 'package:badges/badges.dart';
 
 
 import 'package:ego_visionn/constants.dart';
-import 'package:ego_visionn/democart/cart_model.dart';
-import 'package:ego_visionn/democart/cart_provider.dart';
-import 'package:ego_visionn/democart/cart_screen.dart';
-import 'package:ego_visionn/democart/db_helper.dart';
+import 'package:ego_visionn/cart/cart_model.dart';
+import 'package:ego_visionn/cart/cart_provider.dart';
+import 'package:ego_visionn/cart/cart_screen.dart';
+import 'package:ego_visionn/cart/db_helper.dart';
 import 'package:ego_visionn/screens/order_summery.dart';
 import 'package:ego_visionn/size_config.dart';
 import 'package:flutter/material.dart';

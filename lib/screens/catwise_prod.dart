@@ -1,4 +1,4 @@
-import 'package:ego_visionn/democart/dddetail.dart';
+import 'package:ego_visionn/cart/product_detail.dart';
 import 'package:ego_visionn/models/catwiseProdModel.dart';
  
 import 'package:flutter/material.dart';

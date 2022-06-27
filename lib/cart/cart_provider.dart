@@ -1,6 +1,6 @@
 
-import 'package:ego_visionn/democart/cart_model.dart';
-import 'package:ego_visionn/democart/db_helper.dart';
+import 'package:ego_visionn/cart/cart_model.dart';
+import 'package:ego_visionn/cart/db_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
