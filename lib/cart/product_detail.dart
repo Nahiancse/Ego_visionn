@@ -15,21 +15,22 @@ import 'package:provider/provider.dart';
 // import 'sql_helper.dart';
 
 class DProdDetailScreen extends StatefulWidget {
-  String? image;
-  String? name;
-  String? price;
-  String? status;
-  String? prodId;
-  String? purchasePrice;
-  int? index;
+  String image;
+  String name;
+  String price;
+  String status;
+  String prodId;
+  String purchasePrice;
+  int index;
   DProdDetailScreen(
-      {this.name,
-      this.image,
-      this.price,
-      this.status,
-      this.prodId,
-      this.purchasePrice,
-      this.index});
+      {
+    required  this.name,
+    required  this.image,
+    required  this.price,
+    required  this.status,
+    required  this.prodId,
+    required  this.purchasePrice,
+      required this.index});
 
   @override
   State<DProdDetailScreen> createState() => _ProdDetailScreenState();
@@ -260,8 +261,8 @@ class _ProdDetailScreenState extends State<DProdDetailScreen> {
                               id: widget.index,
                               productId: widget.index.toString(),
                               productName: widget.name.toString(),
-                              initialPrice: double.parse(widget.price!),
-                              productPrice: double.parse(widget.price!),
+                              initialPrice: double.parse(widget.price),
+                              productPrice: double.parse(widget.price),
                               quantity: 1,
                               unitTag: 'kg',
                               image: widget.image.toString()))

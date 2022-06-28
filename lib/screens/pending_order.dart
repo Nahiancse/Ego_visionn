@@ -14,6 +14,7 @@ class _PendingOrderScreenState extends State<PendingOrderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
 backgroundColor: Color(0xFF7859a5),
         centerTitle: true,
         title: Text('Pending Orders',style: TextStyle(color: Colors.white),),

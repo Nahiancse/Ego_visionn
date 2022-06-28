@@ -110,6 +110,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
                                     return DProdDetailScreen(
+                                      index: index,
                                       name: _foundUsers[index].productName!,
                                       image: _foundUsers[index].image!,
                                       price: _foundUsers[index]

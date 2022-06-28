@@ -23,6 +23,7 @@ class _CartScreenState extends State<FCartScreen> {
     final cart = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Color(0xFF7859a5),
         title: Text('Shopping Cart', style: TextStyle(color: Colors.white)),
         centerTitle: true,

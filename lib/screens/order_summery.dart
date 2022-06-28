@@ -243,18 +243,23 @@ class _OrderSummeryState extends State<OrderSummery> {
     };
     print(data.toString());
     final response = await http.post(Uri.parse(ORDER),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(data),
+        // headers: {
+        //   'Content-Type': 'application/json; charset=UTF-8',
+        // },
+        body: json.encode(data),
         encoding: Encoding.getByName("utf-8"));
     // setState(() {
     //   isLoading=false;
     // });
     if (response.statusCode == 200) {
-      // Map<String, dynamic> resposnes = jsonDecode(response.body);
-      // print(response.body);
+      // print(resposnes);
       print(response.statusCode);
+      // Map<String, dynamic> resposnes = jsonDecode(response.body);
+      if (response.body.isNotEmpty) {
+        Map<String, dynamic> resposnes = jsonDecode(response.body);
+        print(resposnes);
+      }
+
       print(response.body);
       // print(resposnes.toString());
 

@@ -14,6 +14,7 @@ class _AllOrderScreenState extends State<AllOrderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
           backgroundColor: Color(0xFF7859a5),
           centerTitle: true,
           title: Text(
