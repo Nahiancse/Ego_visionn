@@ -1,11 +1,16 @@
+import 'dart:async';
+
 import 'package:ego_visionn/cart/cart_screen.dart';
+import 'package:ego_visionn/screens/all_order.dart';
 import 'package:ego_visionn/screens/home.dart';
 import 'package:ego_visionn/screens/login_screen.dart';
+import 'package:ego_visionn/screens/pending_order.dart';
 import 'package:ego_visionn/screens/profile.dart';
 
 import 'package:ego_visionn/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({
@@ -17,12 +22,15 @@ class BottomNav extends StatefulWidget {
 }
 
 class _BottomNavState extends State<BottomNav> {
+  StreamSubscription? internetconnection;
+  bool isoffline = false;
+
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
     Home(),
-    ProfileScreen(),
+    PendingOrderScreen(),
     FCartScreen(),
-    Home(),
+    AllOrderScreen(),
     ProfileScreen(),
   ];
 
@@ -66,8 +74,37 @@ class _BottomNavState extends State<BottomNav> {
   // Retrieve the saved name if it exists
   @override
   void initState() {
+    internetconnection = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      // whenevery connection status is changed.
+      if (result == ConnectivityResult.none) {
+        //there is no any connection
+        setState(() {
+          isoffline = true;
+        });
+      } else if (result == ConnectivityResult.mobile) {
+        //connection is mobile data network
+        setState(() {
+          isoffline = false;
+        });
+      } else if (result == ConnectivityResult.wifi) {
+        //connection is from wifi
+        setState(() {
+          isoffline = false;
+        });
+      }
+    }); // using this listiner, you can get the medium of connection as well.
+
     super.initState();
     _retrieveName();
+  }
+
+  @override
+  dispose() {
+    super.dispose();
+    internetconnection!.cancel();
+    //cancel internent connection subscription after you are done
   }
 
   Future<void> _retrieveName() async {
@@ -98,7 +135,23 @@ class _BottomNavState extends State<BottomNav> {
             padding: EdgeInsets.only(right: 10),
             child: Row(
               children: [
-                _savedUserId != null ? Text(_savedName) : Text(''),
+                _savedUserId != null
+                    ? Text(
+                        'Due:12500',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      )
+                    : Text(''),
+                SizedBox(
+                  width: 30,
+                ),
+                _savedUserId != null
+                    ? Text(
+                        _savedName,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      )
+                    : Text(''),
                 _savedUserId != null
                     ? CircleAvatar(
                         backgroundImage: AssetImage('assets/propic.jpg'),
@@ -128,9 +181,11 @@ class _BottomNavState extends State<BottomNav> {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: isoffline == false
+          ? Center(
+              child: _widgetOptions.elementAt(_selectedIndex),
+            )
+          : Center(child: Text('No Internet')),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
@@ -166,5 +221,29 @@ class _BottomNavState extends State<BottomNav> {
         ],
       ),
     );
+  }
+
+  Widget errmsg(String text, bool show) {
+    //error message widget.
+    if (show == true) {
+      //if error is true then show error message box
+      return Container(
+        padding: EdgeInsets.all(10.00),
+        margin: EdgeInsets.only(bottom: 10.00),
+        color: Colors.red,
+        child: Row(children: [
+          Container(
+            margin: EdgeInsets.only(right: 6.00),
+            child: Icon(Icons.info, color: Colors.white),
+          ), // icon for error message
+
+          Text(text, style: TextStyle(color: Colors.white)),
+          //show error message text
+        ]),
+      );
+    } else {
+      return Container();
+      //if error is false, return empty container.
+    }
   }
 }
