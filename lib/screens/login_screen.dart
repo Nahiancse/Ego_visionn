@@ -314,6 +314,7 @@ class _LoginPageState extends State<LoginPage> {
       preferences.setString("email", user['Customer_Email']);
       preferences.setString("officer", user['officer_name']);
       preferences.setString("area", user['area']);
+      preferences.setString("due", user['due']);
       if (user['organization_name'] != null) {
         preferences.setString("organization", user['organization_name']);
       } else {
