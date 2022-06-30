@@ -14,6 +14,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   var _savedName;
   var _savedPhone;
   var _savedAddress;
+  var _savedArea;
+  var _savedOfficer;
+  var _savedEmail;
+  var _savedOwner;
   var _savedOrganaization;
   var _savedUserId;
   // Retrieve the saved name if it exists
@@ -37,6 +41,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       _savedAddress = prefs.getString('address');
       _savedOrganaization = prefs.getString('organization');
       _savedUserId = prefs.getString('userId');
+      _savedOwner = prefs.getString('ownerName');
+      _savedOfficer = prefs.getString('officer');
+      _savedArea = prefs.getString('area');
+      _savedEmail = prefs.getString('email');
     });
   }
 
@@ -45,101 +53,136 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            CircleAvatar(
-              backgroundImage: AssetImage('assets/propic.jpg'),
-              radius: 50,
-            ),
-            Card(
-              child: Container(
-                padding: EdgeInsets.only(top: 10, bottom: 10),
-                margin: EdgeInsets.only(left: 30, right: 30, top: 15),
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(8),
-                      width: double.infinity,
-                      height: 40,
-                      child: Text(
-                        'Info',
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage('assets/propic.jpg'),
+                radius: 50,
+              ),
+              Card(
+                child: Container(
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  margin: EdgeInsets.only(left: 30, right: 30, top: 15),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(8),
+                        width: double.infinity,
+                        height: 40,
+                        child: Text(
+                          'Info',
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                        color: Color(0xFF7859a5),
                       ),
-                      color: Color(0xFF7859a5),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Customer Name'),
-                        SizedBox(width: 100),
-                        Text(_savedName!),
-                      ],
-                    ),
-                    Divider(
-                      thickness: 2,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Phone'),
-                        SizedBox(width: 100),
-                        Text(_savedPhone!),
-                      ],
-                    ),
-                    Divider(
-                      thickness: 2,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('E-mail'),
-                        SizedBox(width: 100),
-                        Text(''),
-                      ],
-                    ),
-                    Divider(
-                      thickness: 2,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Address'),
-                        SizedBox(width: 100),
-                        Text(_savedAddress!),
-                      ],
-                    ),
-                    Divider(
-                      thickness: 2,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('UserId'),
-                        SizedBox(width: 100),
-                        Text(_savedUserId!),
-                      ],
-                    ),
-                    Divider(
-                      thickness: 2,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Organization'),
-                        SizedBox(width: 100),
-                        _savedOrganaization == null
-                            ? Text('')
-                            : Text(_savedOrganaization),
-                      ],
-                    ),
-                  ],
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Customer Name'),
+                          SizedBox(width: 100),
+                          Text(_savedName!),
+                        ],
+                      ),
+                      Divider(
+                        thickness: 2,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Owner Name'),
+                          SizedBox(width: 100),
+                          Text(_savedOwner!),
+                        ],
+                      ),
+                      Divider(
+                        thickness: 2,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Officer Name'),
+                          SizedBox(width: 100),
+                          Text(_savedOfficer!),
+                        ],
+                      ),
+                      Divider(
+                        thickness: 2,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Phone'),
+                          SizedBox(width: 100),
+                          Text(_savedPhone!),
+                        ],
+                      ),
+                      Divider(
+                        thickness: 2,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('E-mail'),
+                          SizedBox(width: 100),
+                          Text(_savedEmail),
+                        ],
+                      ),
+                      Divider(
+                        thickness: 2,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Area'),
+                          SizedBox(width: 100),
+                          Text(_savedArea),
+                        ],
+                      ),
+                      Divider(
+                        thickness: 2,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Address'),
+                          SizedBox(width: 100),
+                          Text(_savedAddress!),
+                        ],
+                      ),
+                      Divider(
+                        thickness: 2,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('UserId'),
+                          SizedBox(width: 100),
+                          Text(_savedUserId!),
+                        ],
+                      ),
+                      Divider(
+                        thickness: 2,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Organization'),
+                          SizedBox(width: 100),
+                          _savedOrganaization == null
+                              ? Text('')
+                              : Text(_savedOrganaization),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -59,6 +59,7 @@ class _OtpFormState extends State<OtpForm> {
     return Form(
       key: _formKey,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('We Send Your Code To ${widget.mmail}'),
           SizedBox(height: 10),
@@ -182,12 +183,13 @@ class _OtpFormState extends State<OtpForm> {
               ),
             ],
           ),
+          Divider(
+            thickness: 1,
+          ),
           Text(
             'Set Password',
             style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.purple),
+                fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
           ),
           TextFormField(
             controller: loginPassController,
@@ -202,7 +204,7 @@ class _OtpFormState extends State<OtpForm> {
             decoration: InputDecoration(
               // prefixIcon: const Icon(Icons.lock),
               hintText: 'Password',
-              hintStyle: TextStyle(color: Colors.purple, fontSize: 15),
+              hintStyle: TextStyle(color: Colors.black, fontSize: 15),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
