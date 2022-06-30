@@ -73,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('User Name'),
+                        Text('Customer Name'),
                         SizedBox(width: 100),
                         Text(_savedName!),
                       ],

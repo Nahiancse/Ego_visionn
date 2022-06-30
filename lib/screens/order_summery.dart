@@ -231,6 +231,7 @@ class _OrderSummeryState extends State<OrderSummery> {
           'status': prodStatus
         }
       ],
+      // 'cart': 'nahian',
       // 'sales': {custId, orderDate, custStatus, note, subtotal, branchId},
       'sales': {
         'customer_id': custId,
@@ -246,7 +247,7 @@ class _OrderSummeryState extends State<OrderSummery> {
         // headers: {
         //   'Content-Type': 'application/json; charset=UTF-8',
         // },
-        body: json.encode(data),
+        body: data,
         encoding: Encoding.getByName("utf-8"));
     // setState(() {
     //   isLoading=false;
@@ -264,7 +265,7 @@ class _OrderSummeryState extends State<OrderSummery> {
       // print(resposnes.toString());
 
       // // Map<String, dynamic> user = resposne['user'];
-      // print(resposne);
+      // print(resposnes);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => BottomNav()));
       // print('success');

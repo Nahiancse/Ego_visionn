@@ -54,7 +54,7 @@ class _BodyState extends State<Body> {
                   resend(widget.id, widget.mmail);
                 },
                 child: Text(
-                  "Resend oo Code",
+                  "Resend Code",
                   style: TextStyle(decoration: TextDecoration.underline),
                 ),
               )

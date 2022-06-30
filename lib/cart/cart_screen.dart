@@ -339,7 +339,7 @@ class _CartScreenState extends State<FCartScreen> {
                   children: [
                     ReusableWidget(
                       title: 'Sub Total',
-                      value: r'$' + value.getTotalPrice().toStringAsFixed(2),
+                      value: r'TK' + value.getTotalPrice().toStringAsFixed(2),
                     ),
                     // ReusableWidget(
                     //   title: 'Discout 5%',
@@ -347,7 +347,7 @@ class _CartScreenState extends State<FCartScreen> {
                     // ),
                     ReusableWidget(
                       title: 'Total',
-                      value: r'$' + value.getTotalPrice().toStringAsFixed(2),
+                      value: r'TK' + value.getTotalPrice().toStringAsFixed(2),
                     )
                   ],
                 ),

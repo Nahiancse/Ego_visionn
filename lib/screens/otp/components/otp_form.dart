@@ -1,4 +1,6 @@
+import 'package:ego_visionn/screens/after_otp_pass.dart';
 import 'package:ego_visionn/screens/home.dart';
+import 'package:ego_visionn/widgets/bottomNav.dart';
 import 'package:flutter/material.dart';
 import 'package:ego_visionn/apis/api.dart';
 // import 'package:shop_app/components/default_button.dart';
@@ -21,7 +23,7 @@ class _OtpFormState extends State<OtpForm> {
   FocusNode? pin2FocusNode;
   FocusNode? pin3FocusNode;
   FocusNode? pin4FocusNode;
-
+  final TextEditingController loginPassController = TextEditingController();
   final TextEditingController _fieldOne = TextEditingController();
   final TextEditingController _fieldTwo = TextEditingController();
   final TextEditingController _fieldThree = TextEditingController();
@@ -180,13 +182,39 @@ class _OtpFormState extends State<OtpForm> {
               ),
             ],
           ),
+          Text(
+            'Set Password',
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Colors.purple),
+          ),
+          TextFormField(
+            controller: loginPassController,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your password';
+              }
+              return null;
+            },
+            maxLines: 1,
+            obscureText: true,
+            decoration: InputDecoration(
+              // prefixIcon: const Icon(Icons.lock),
+              hintText: 'Password',
+              hintStyle: TextStyle(color: Colors.purple, fontSize: 15),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
           SizedBox(height: 10),
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 print('object');
                 otpp(_fieldOne.text, _fieldTwo.text, _fieldThree.text,
-                    _fieldFour.text);
+                    _fieldFour.text, loginPassController.text);
               }
             },
             style: ElevatedButton.styleFrom(
@@ -204,12 +232,10 @@ class _OtpFormState extends State<OtpForm> {
     );
   }
 
-  otpp(a, b, c, d) async {
+  otpp(a, b, c, d, password) async {
     _otp = a + b + c + d;
 
-    Map data = {
-      'otp': _otp!,
-    };
+    Map data = {'otp': _otp!, 'password': password};
     print(data.toString());
     final response = await http.post(Uri.parse(OTP),
         // headers: {
@@ -230,7 +256,7 @@ class _OtpFormState extends State<OtpForm> {
       // savePref(1,user['name'],user['email'],user['id']);
       if (user['success'] == true) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Home()));
+            context, MaterialPageRoute(builder: (context) => BottomNav()));
       }
 
       print(" ${user['success']}");

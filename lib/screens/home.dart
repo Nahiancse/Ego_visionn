@@ -238,7 +238,7 @@ class _HomeState extends State<Home> {
                           );
                           // Text(snapshot.data!.);
                         } else if (snapshot.hasError) {
-                          return Text('${snapshot.error}');
+                          return Center(child: const CircularProgressIndicator());
                         }
 
                         // By default, show a loading spinner.
@@ -308,7 +308,7 @@ class _HomeState extends State<Home> {
                           );
                           // Text(snapshot.data!.);
                         } else if (snapshot.hasError) {
-                          return Text('${snapshot.error}');
+                          return Text('');
                         }
 
                         // By default, show a loading spinner.
@@ -376,7 +376,7 @@ class _HomeState extends State<Home> {
                           );
                           // Text(snapshot.data!.);
                         } else if (snapshot.hasError) {
-                          return Text('${snapshot.error}');
+                          return Text('');
                         }
 
                         // By default, show a loading spinner.
@@ -444,7 +444,7 @@ class _HomeState extends State<Home> {
                           );
                           // Text(snapshot.data!.);
                         } else if (snapshot.hasError) {
-                          return Text('${snapshot.error}');
+                          return Text('');
                         }
 
                         // By default, show a loading spinner.
@@ -509,7 +509,7 @@ class _HomeState extends State<Home> {
                                         );
                                     // Text(snapshot.data!.);
                                   } else if (snapshot.hasError) {
-                                    return Text('${snapshot.error}');
+                                    return Text('');
                                   }
 
                                   // By default, show a loading spinner.
@@ -546,7 +546,7 @@ class _HomeState extends State<Home> {
                                         );
                                     // Text(snapshot.data!.);
                                   } else if (snapshot.hasError) {
-                                    return Text('${snapshot.error}');
+                                    return Text('');
                                   }
 
                                   // By default, show a loading spinner.
@@ -583,7 +583,7 @@ class _HomeState extends State<Home> {
                                         );
                                     // Text(snapshot.data!.);
                                   } else if (snapshot.hasError) {
-                                    return Text('${snapshot.error}');
+                                    return Text('');
                                   }
 
                                   // By default, show a loading spinner.
@@ -620,7 +620,7 @@ class _HomeState extends State<Home> {
                                         );
                                     // Text(snapshot.data!.);
                                   } else if (snapshot.hasError) {
-                                    return Text('${snapshot.error}');
+                                    return Text('');
                                   }
 
                                   // By default, show a loading spinner.
@@ -657,7 +657,7 @@ class _HomeState extends State<Home> {
                                         );
                                     // Text(snapshot.data!.);
                                   } else if (snapshot.hasError) {
-                                    return Text('${snapshot.error}');
+                                    return Text('');
                                   }
 
                                   // By default, show a loading spinner.
@@ -694,7 +694,7 @@ class _HomeState extends State<Home> {
                                   }));
                               // Text(snapshot.data!.);
                             } else if (snapshot.hasError) {
-                              return Text('${snapshot.error}');
+                              return Text('');
                             }
 
                             // By default, show a loading spinner.

@@ -1,6 +1,5 @@
 import 'package:badges/badges.dart';
 
-
 import 'package:ego_visionn/constants.dart';
 import 'package:ego_visionn/cart/cart_model.dart';
 import 'package:ego_visionn/cart/cart_provider.dart';
@@ -23,13 +22,12 @@ class DProdDetailScreen extends StatefulWidget {
   String purchasePrice;
   int index;
   DProdDetailScreen(
-      {
-    required  this.name,
-    required  this.image,
-    required  this.price,
-    required  this.status,
-    required  this.prodId,
-    required  this.purchasePrice,
+      {required this.name,
+      required this.image,
+      required this.price,
+      required this.status,
+      required this.prodId,
+      required this.purchasePrice,
       required this.index});
 
   @override
@@ -196,7 +194,7 @@ class _ProdDetailScreenState extends State<DProdDetailScreen> {
                 thickness: 1,
               ),
               Text(
-                widget.name!,
+                widget.name,
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -205,7 +203,7 @@ class _ProdDetailScreenState extends State<DProdDetailScreen> {
               SizedBox(
                 height: 10,
               ),
-              Text('Price : ${widget.price!}Tk',
+              Text('Price : ${widget.price}Tk',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -250,16 +248,16 @@ class _ProdDetailScreenState extends State<DProdDetailScreen> {
                       print(widget.index);
                       print(widget.index);
                       print(widget.name.toString());
-                      print(double.parse(widget.price!).toString());
-                      print(double.parse(widget.price!).toString());
+                      print(double.parse(widget.price).toString());
+                      print(double.parse(widget.price).toString());
                       print('1');
                       print('kg');
                       print(widget.image.toString());
 
                       dbHelper!
                           .insert(Cart(
-                              id: widget.index,
-                              productId: widget.index.toString(),
+                              id: int.parse(widget.prodId),
+                              productId: widget.prodId.toString(),
                               productName: widget.name.toString(),
                               initialPrice: double.parse(widget.price),
                               productPrice: double.parse(widget.price),
@@ -306,32 +304,32 @@ class _ProdDetailScreenState extends State<DProdDetailScreen> {
                   SizedBox(
                     width: 10,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return OrderSummery(
-                          name: widget.name,
-                          image: widget.image,
-                          price: widget.price,
-                          prodId: widget.prodId,
-                          purchasePrice: widget.purchasePrice,
-                          status: widget.status,
-                        );
-                      }));
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(8),
-                      color: Colors.green,
-                      height: 40,
-                      width: 150,
-                      child: Text(
-                        'Buy Now',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     Navigator.push(context,
+                  //         MaterialPageRoute(builder: (context) {
+                  //       return OrderSummery(
+                  //         name: widget.name,
+                  //         image: widget.image,
+                  //         price: widget.price,
+                  //         prodId: widget.prodId,
+                  //         purchasePrice: widget.purchasePrice,
+                  //         status: widget.status,
+                  //       );
+                  //     }));
+                  //   },
+                  //   child: Container(
+                  //     alignment: Alignment.center,
+                  //     padding: EdgeInsets.all(8),
+                  //     color: Colors.green,
+                  //     height: 40,
+                  //     width: 150,
+                  //     child: Text(
+                  //       'Buy Now',
+                  //       style: TextStyle(color: Colors.white),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
               /////////////for checkout

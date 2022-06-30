@@ -139,7 +139,9 @@ class _BottomNavState extends State<BottomNav> {
                     ? Text(
                         'Due:12500',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.red),
                       )
                     : Text(''),
                 SizedBox(
@@ -178,7 +180,7 @@ class _BottomNavState extends State<BottomNav> {
         backgroundColor: Color(0xFF7859a5),
         title: Text(
           'Ego Vision',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontSize: 16),
         ),
       ),
       body: isoffline == false
