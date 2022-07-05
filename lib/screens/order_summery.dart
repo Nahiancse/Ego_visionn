@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:ego_visionn/apis/api.dart';
+import 'package:ego_visionn/models/ordMod.dart';
 import 'package:ego_visionn/screens/home.dart';
 import 'package:ego_visionn/widgets/bottomNav.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class _OrderSummeryState extends State<OrderSummery> {
     // }
 
     setState(() {
-      _savedUserId = prefs.getString('userId');
+      _savedUserId = prefs.getString('Id');
       _savedBranchId = prefs.getString('branchId');
       _savedStatus = prefs.getString('status');
     });
@@ -221,8 +222,9 @@ class _OrderSummeryState extends State<OrderSummery> {
       // 'cart': prodId,
 
       'cart': [
-        // {prodId, saleRate, purchaseRate, quantity, total, prodStatus}
+        // {prodId, saleRate, purchaseRate, quantity, '200', prodStatus}
         {
+          // 'product_id': prodId.toString(),
           'product_id': prodId,
           'sale_rate': saleRate,
           'purchase_rate': purchaseRate,
@@ -230,17 +232,26 @@ class _OrderSummeryState extends State<OrderSummery> {
           'total': total,
           'status': prodStatus
         }
-      ],
+      ].toString(),
       // 'cart': 'nahian',
-      // 'sales': {custId, orderDate, custStatus, note, subtotal, branchId},
+      // 'sales': {
+      //   custId.toString(),
+      //   orderDate,
+      //   custStatus,
+      //   note,
+      //   subtotal,
+      //   branchId
+      // }.toString(),
       'sales': {
         'customer_id': custId,
         'order_date': orderDate,
         'status': custStatus,
-        'note': note,
+        'note': 'aa',
         'subtotal': subtotal,
         'branch_id': branchId
-      }
+        // custId, orderDate, custStatus, 'aa', subtotal, branchId
+      }.toString()
+      // 'sales': datas.toString()
     };
     print(data.toString());
     final response = await http.post(Uri.parse(ORDER),
@@ -256,18 +267,18 @@ class _OrderSummeryState extends State<OrderSummery> {
       // print(resposnes);
       print(response.statusCode);
       // Map<String, dynamic> resposnes = jsonDecode(response.body);
-      if (response.body.isNotEmpty) {
-        Map<String, dynamic> resposnes = jsonDecode(response.body);
-        print(resposnes);
-      }
+      // if (response.body.isNotEmpty) {
+      //   Map<String, dynamic> resposnes = jsonDecode(response.body);
+      //   print(resposnes);
+      // }
 
       print(response.body);
       // print(resposnes.toString());
 
       // // Map<String, dynamic> user = resposne['user'];
       // print(resposnes);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => BottomNav()));
+      // Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => BottomNav()));
       // print('success');
       // print(" User name ${user['name']}");
       // SharedPreferences preferences = await SharedPreferences.getInstance();

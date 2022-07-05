@@ -307,6 +307,7 @@ class _LoginPageState extends State<LoginPage> {
       SharedPreferences preferences = await SharedPreferences.getInstance();
 
       preferences.setString("userId", user['code']);
+      preferences.setString("Id", user['id']);
       preferences.setString("name", user['name']);
       preferences.setString("phone", user['phone']);
       preferences.setString("address", user['address']);
@@ -314,11 +315,16 @@ class _LoginPageState extends State<LoginPage> {
       preferences.setString("email", user['Customer_Email']);
       preferences.setString("officer", user['officer_name']);
       preferences.setString("area", user['area']);
-      preferences.setString("due", user['due']);
+      // preferences.setString("due", resposne['due']);
       if (user['organization_name'] != null) {
         preferences.setString("organization", user['organization_name']);
       } else {
         preferences.setString("organization", '');
+      }
+      if (resposne['due'] != null) {
+        preferences.setString("due", resposne['due']);
+      } else {
+        preferences.setString("due", '0.0');
       }
       if (user['image'] != null) {
         preferences.setString("image", user['image']);
@@ -348,11 +354,15 @@ class _LoginPageState extends State<LoginPage> {
 
       print(" ${resposne['success']}");
 
-      scaffoldMessenger
-          .showSnackBar(SnackBar(content: Text("${resposne['success']}")));
+      scaffoldMessenger.showSnackBar(SnackBar(
+        content: Text("${resposne['success']}"),
+        backgroundColor: Colors.green,
+      ));
     } else {
-      scaffoldMessenger
-          .showSnackBar(SnackBar(content: Text("Please try again!")));
+      scaffoldMessenger.showSnackBar(SnackBar(
+        content: Text("Please try again!"),
+        backgroundColor: Colors.red,
+      ));
     }
   }
 

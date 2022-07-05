@@ -1,5 +1,6 @@
 import 'package:ego_visionn/screens/after_otp_pass.dart';
 import 'package:ego_visionn/screens/home.dart';
+import 'package:ego_visionn/screens/login_screen.dart';
 import 'package:ego_visionn/widgets/bottomNav.dart';
 import 'package:flutter/material.dart';
 import 'package:ego_visionn/apis/api.dart';
@@ -258,7 +259,7 @@ class _OtpFormState extends State<OtpForm> {
       // savePref(1,user['name'],user['email'],user['id']);
       if (user['success'] == true) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => BottomNav()));
+            context, MaterialPageRoute(builder: (context) => LoginPage()));
       }
 
       print(" ${user['success']}");

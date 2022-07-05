@@ -1,3 +1,5 @@
+import 'package:ego_visionn/screens/changePass.dart';
+import 'package:ego_visionn/screens/imageUp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -20,6 +22,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   var _savedOwner;
   var _savedOrganaization;
   var _savedUserId;
+  var _savedId;
+  var _savedIm;
   // Retrieve the saved name if it exists
   @override
   void initState() {
@@ -41,10 +45,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       _savedAddress = prefs.getString('address');
       _savedOrganaization = prefs.getString('organization');
       _savedUserId = prefs.getString('userId');
+      _savedId = prefs.getString('Id');
       _savedOwner = prefs.getString('ownerName');
       _savedOfficer = prefs.getString('officer');
       _savedArea = prefs.getString('area');
       _savedEmail = prefs.getString('email');
+      _savedIm = prefs.getString('image');
     });
   }
 
@@ -56,9 +62,82 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/propic.jpg'),
-                radius: 50,
+              Stack(
+                children: [
+                  _savedIm != null
+                      ? CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              'http://egovision24.com/uploads/customer/${_savedIm}'),
+                          radius: 50,
+                        )
+                      : CircleAvatar(
+                          backgroundImage: AssetImage('assets/propic.jpg'),
+                          radius: 50,
+                        )
+
+                  // Positioned(
+                  //     bottom: 0,
+                  //     right: -10,
+                  //     child: IconButton(
+                  //         onPressed: () {
+                  //           showDialog(
+                  //               context: context,
+                  //               builder: (context) {
+                  //                 return Container(
+                  //                   height: 100,
+                  //                   width: 100,
+                  //                   child: AlertDialog(
+                  //                     title: Column(
+                  //                       // mainAxisAlignment:
+                  //                       //     MainAxisAlignment.center,
+                  //                       children: [
+                  //                         // Text("This is an alert message."),
+                  //                         TextButton(
+                  //                             onPressed: () {
+                  //                               Navigator.push(context,
+                  //                                   MaterialPageRoute(
+                  //                                       builder: (context) {
+                  //                                 return ImUpScreen(
+                  //                                   id: _savedId!,
+                  //                                 );
+                  //                               }));
+                  //                             },
+                  //                             child: Text('Upload Image')),
+                  //                         TextButton(
+                  //                             onPressed: () {
+                  //                               Navigator.push(context,
+                  //                                   MaterialPageRoute(
+                  //                                       builder: (context) {
+                  //                                 return ChangePassScreen(
+                  //                                   id: _savedId!,
+                  //                                 );
+                  //                               }));
+                  //                             },
+                  //                             child: Text('Change Password')),
+                  //                       ],
+                  //                     ),
+                  //                     // content: Column(
+                  //                     //   // mainAxisAlignment:
+                  //                     //   //     MainAxisAlignment.center,
+                  //                     //   children: [
+                  //                     //     // Text("This is an alert message."),
+                  //                     //     TextButton(
+                  //                     //         onPressed: () {},
+                  //                     //         child: Text('Upload Image')),
+                  //                     //     TextButton(
+                  //                     //         onPressed: () {},
+                  //                     //         child: Text('Change Password')),
+                  //                     //   ],
+                  //                     // ),
+                  //                   ),
+                  //                 );
+                  //               });
+                  //         },
+                  //         icon: Icon(
+                  //           Icons.edit,
+                  //           size: 35,
+                  //         )))
+                ],
               ),
               Card(
                 child: Container(
@@ -84,7 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           Text('Customer Name'),
                           SizedBox(width: 100),
-                          Text(_savedName!),
+                          Flexible(child: Text(_savedName!)),
                         ],
                       ),
                       Divider(
@@ -93,20 +172,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Owner Name'),
+                          Text('Customer ID'),
                           SizedBox(width: 100),
-                          Text(_savedOwner!),
-                        ],
-                      ),
-                      Divider(
-                        thickness: 2,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Officer Name'),
-                          SizedBox(width: 100),
-                          Text(_savedOfficer!),
+                          Text(_savedUserId!),
                         ],
                       ),
                       Divider(
@@ -137,6 +205,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          Text('Owner Name'),
+                          SizedBox(width: 100),
+                          Text(_savedOwner!),
+                        ],
+                      ),
+                      Divider(
+                        thickness: 2,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Officer Name'),
+                          SizedBox(width: 100),
+                          Text(_savedOfficer!),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                           Text('Area'),
                           SizedBox(width: 100),
                           Text(_savedArea),
@@ -156,28 +243,53 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Divider(
                         thickness: 2,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('UserId'),
-                          SizedBox(width: 100),
-                          Text(_savedUserId!),
-                        ],
-                      ),
-                      Divider(
-                        thickness: 2,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Organization'),
-                          SizedBox(width: 100),
-                          _savedOrganaization == null
-                              ? Text('')
-                              : Text(_savedOrganaization),
-                        ],
-                      ),
                     ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ChangePassScreen(
+                      id: _savedId!,
+                    );
+                  }));
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 30,
+                  width: 150,
+                  color: Color(0xFF7859a5),
+                  child: const Text(
+                    'Change Password',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ImUpScreen(
+                      id: _savedId!,
+                    );
+                  }));
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 30,
+                  width: 150,
+                  color: Color(0xFF7859a5),
+                  child: const Text(
+                    'Upload Image',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
               ),

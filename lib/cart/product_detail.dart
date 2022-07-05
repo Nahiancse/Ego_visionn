@@ -304,32 +304,32 @@ class _ProdDetailScreenState extends State<DProdDetailScreen> {
                   SizedBox(
                     width: 10,
                   ),
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     Navigator.push(context,
-                  //         MaterialPageRoute(builder: (context) {
-                  //       return OrderSummery(
-                  //         name: widget.name,
-                  //         image: widget.image,
-                  //         price: widget.price,
-                  //         prodId: widget.prodId,
-                  //         purchasePrice: widget.purchasePrice,
-                  //         status: widget.status,
-                  //       );
-                  //     }));
-                  //   },
-                  //   child: Container(
-                  //     alignment: Alignment.center,
-                  //     padding: EdgeInsets.all(8),
-                  //     color: Colors.green,
-                  //     height: 40,
-                  //     width: 150,
-                  //     child: Text(
-                  //       'Buy Now',
-                  //       style: TextStyle(color: Colors.white),
-                  //     ),
-                  //   ),
-                  // ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return OrderSummery(
+                          name: widget.name,
+                          image: widget.image,
+                          price: widget.price,
+                          prodId: widget.prodId,
+                          purchasePrice: widget.purchasePrice,
+                          status: widget.status,
+                        );
+                      }));
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(8),
+                      color: Colors.green,
+                      height: 40,
+                      width: 150,
+                      child: Text(
+                        'Buy Now',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
                 ],
               ),
               /////////////for checkout

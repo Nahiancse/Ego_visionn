@@ -1,4 +1,8 @@
+import 'package:ego_visionn/screens/all_order.dart';
 import 'package:ego_visionn/screens/login_screen.dart';
+import 'package:ego_visionn/screens/ongoing.dart';
+import 'package:ego_visionn/screens/pending_order.dart';
+import 'package:ego_visionn/screens/recieved.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,6 +23,7 @@ class _OpenDrawerState extends State<OpenDrawer> {
   // var _savedAddress;
   // var _savedOrganaization;
   var _savedUserId;
+  var _savedUserIm;
   // Retrieve the saved name if it exists
   @override
   void initState() {
@@ -36,6 +41,7 @@ class _OpenDrawerState extends State<OpenDrawer> {
 
     setState(() {
       _savedUserId = prefs.getString('userId')!;
+      _savedUserIm = prefs.getString('image')!;
       // _savedPhone = prefs.getString('phone');
       // _savedAddress = prefs.getString('address');
       // _savedOrganaization = prefs.getString('organization');
@@ -71,10 +77,16 @@ class _OpenDrawerState extends State<OpenDrawer> {
             color: Color(0xFF7859a5),
             child: Column(
               children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/propic.jpg'),
-                  radius: 35,
-                ),
+                _savedUserIm != null
+                    ? CircleAvatar(
+                        backgroundImage: NetworkImage(
+                            'http://egovision24.com/uploads/customer/${_savedUserIm}'),
+                        radius: 35,
+                      )
+                    : CircleAvatar(
+                        backgroundImage: AssetImage('assets/propic.jpg'),
+                        radius: 35,
+                      ),
                 SizedBox(
                   height: 5,
                 ),
@@ -95,7 +107,30 @@ class _OpenDrawerState extends State<OpenDrawer> {
                   color: Color(0xFF7859a5), fontWeight: FontWeight.bold),
             ),
             onTap: () {
-              Navigator.pop(context);
+              if (_savedUserId != null) {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return PendingOrderScreen();
+                }));
+              } else {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(
+                    "Please Login",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  action: SnackBarAction(
+                    textColor: Colors.white,
+                    label: 'Login',
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return LoginPage();
+                      }));
+                    },
+                  ),
+                ));
+              }
             },
           ),
           ListTile(
@@ -105,7 +140,30 @@ class _OpenDrawerState extends State<OpenDrawer> {
                   color: Color(0xFF7859a5), fontWeight: FontWeight.bold),
             ),
             onTap: () {
-              Navigator.pop(context);
+              if (_savedUserId != null) {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return OnGoingScreen();
+                }));
+              } else {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(
+                    "Please Login",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  action: SnackBarAction(
+                    textColor: Colors.white,
+                    label: 'Login',
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return LoginPage();
+                      }));
+                    },
+                  ),
+                ));
+              }
             },
           ),
           ListTile(
@@ -120,6 +178,30 @@ class _OpenDrawerState extends State<OpenDrawer> {
               //         .showSnackBar(SnackBar(content: Text("please login!")))
               //     : Navigator.pop(context);
               // Scaffold.of(context).showSnackBar(snackBar);
+              if (_savedUserId != null) {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return RecievedOrder();
+                }));
+              } else {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(
+                    "Please Login",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  action: SnackBarAction(
+                    textColor: Colors.white,
+                    label: 'Login',
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return LoginPage();
+                      }));
+                    },
+                  ),
+                ));
+              }
             },
           ),
           ListTile(
@@ -129,7 +211,30 @@ class _OpenDrawerState extends State<OpenDrawer> {
                   color: Color(0xFF7859a5), fontWeight: FontWeight.bold),
             ),
             onTap: () {
-              Navigator.pop(context);
+              if (_savedUserId != null) {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return AllOrderScreen();
+                }));
+              } else {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(
+                    "Please Login",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  action: SnackBarAction(
+                    textColor: Colors.white,
+                    label: 'Login',
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return LoginPage();
+                      }));
+                    },
+                  ),
+                ));
+              }
             },
           ),
           ListTile(

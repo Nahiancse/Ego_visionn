@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:ego_visionn/cart/cart_model.dart';
 import 'package:ego_visionn/cart/cart_provider.dart';
 import 'package:ego_visionn/cart/db_helper.dart';
+import 'package:ego_visionn/screens/order_summery.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -348,7 +349,34 @@ class _CartScreenState extends State<FCartScreen> {
                     ReusableWidget(
                       title: 'Total',
                       value: r'TK' + value.getTotalPrice().toStringAsFixed(2),
-                    )
+                    ),
+
+                    GestureDetector(
+                      onTap: () async {
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: (context) {
+                        //   return OrderSummery(
+                        //     // image: ,
+                        //     // name: ,
+                        //     // price: ,
+                        //     // prodId: ,
+                        //     // purchasePrice: ,
+                        //     // status: ,
+                        //   );
+                        // }));
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 30,
+                        width: 150,
+                        color: Color(0xFF7859a5),
+                        child: const Text(
+                          'Checkout',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               );

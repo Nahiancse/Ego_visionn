@@ -71,6 +71,8 @@ class _BottomNavState extends State<BottomNav> {
   // var _savedAddress;
   // var _savedOrganaization;
   var _savedUserId;
+  var _savedDue;
+  var _savedIm;
   // Retrieve the saved name if it exists
   @override
   void initState() {
@@ -118,6 +120,8 @@ class _BottomNavState extends State<BottomNav> {
     setState(() {
       _savedUserId = prefs.getString('userId')!;
       _savedName = prefs.getString('name')!;
+      _savedDue = prefs.getString('due')!;
+      _savedIm = prefs.getString('image')!;
       // _savedPhone = prefs.getString('phone');
       // _savedAddress = prefs.getString('address');
       // _savedOrganaization = prefs.getString('organization');
@@ -137,7 +141,7 @@ class _BottomNavState extends State<BottomNav> {
               children: [
                 _savedUserId != null
                     ? Text(
-                        'Due:12500',
+                        'Due:${_savedDue}',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -150,14 +154,13 @@ class _BottomNavState extends State<BottomNav> {
                 _savedUserId != null
                     ? Text(
                         _savedName,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                        style: TextStyle(),
                       )
                     : Text(''),
                 _savedUserId != null
                     ? CircleAvatar(
-                        backgroundImage: AssetImage('assets/propic.jpg'),
-                      )
+                        backgroundImage: NetworkImage(
+                            'http://egovision24.com/uploads/customer/${_savedIm}'))
                     : Text(''),
               ],
             ),
@@ -180,7 +183,7 @@ class _BottomNavState extends State<BottomNav> {
         backgroundColor: Color(0xFF7859a5),
         title: Text(
           'Ego Vision',
-          style: TextStyle(color: Colors.white, fontSize: 16),
+          style: TextStyle(color: Colors.white, fontSize: 14),
         ),
       ),
       body: isoffline == false
